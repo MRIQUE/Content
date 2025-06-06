@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : L'Avenir des Systèmes d'Information Agentiques</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Palette de couleurs choisie : Brilliant Blues -->
+    <!-- Confirmation : Aucun SVG ou Mermaid JS n'a été utilisé dans ce document. Tous les diagrammes sont rendus en HTML/CSS ou via Canvas. -->
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #6699CC;
+            margin: 0 1rem;
+        }
+        .flow-arrow-down::after {
+            content: '↓';
+            font-size: 2rem;
+            color: #6699CC;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #003F5C, #6699CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black gradient-text">La Révolution Agentique est en Marche</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Une analyse visuelle des tendances qui redéfiniront notre interaction avec le numérique d'ici 2030, basée sur le rapport de recherche approfondi.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <section class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-around text-center">
+                <div class="mb-6 md:mb-0">
+                    <p class="text-6xl font-extrabold" style="color: #003F5C;">2030</p>
+                    <p class="text-lg font-semibold text-gray-700">L'Année Cible</p>
+                    <p class="text-gray-500">pour un Système d'Information (SI) majoritairement "agentique".</p>
+                </div>
+                <div class="mb-6 md:mb-0">
+                    <p class="text-6xl font-extrabold" style="color: #365F7A;">3+</p>
+                    <p class="text-lg font-semibold text-gray-700">Agents IA par Utilisateur</p>
+                    <p class="text-gray-500">Une prédiction pour gérer les sphères pro, perso, et autres.</p>
+                </div>
+                <div>
+                    <p class="text-6xl font-extrabold" style="color: #6699CC;">>80%</p>
+                    <p class="text-lg font-semibold text-gray-700">des SaaS seront "Headless"</p>
+                    <p class="text-gray-500">pour être consommés par les agents plutôt que par les humains.</p>
+                </div>
+            </section>
+            
+            <section class="lg:col-span-3 text-center my-8">
+                <h2 class="text-3xl font-bold mb-4">Les 3 Piliers de la Transformation</h2>
+                <p class="text-gray-600 max-w-4xl mx-auto">Pour comprendre cette révolution, il faut saisir les trois composants fondamentaux qui en sont le moteur. Chacun joue un rôle indispensable dans la création d'un écosystème numérique plus intelligent et autonome.</p>
+            </section>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center flex flex-col items-center">
+                <div class="text-6xl mb-4">🤖</div>
+                <h3 class="text-2xl font-bold mb-2" style="color: #003F5C;">1. L'Agent IA Personnel</h3>
+                <p class="text-gray-600">Votre futur collaborateur numérique. Un assistant proactif et autonome qui comprend vos objectifs et agit en votre nom, orchestrant des tâches complexes en arrière-plan.</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center flex flex-col items-center">
+                <div class="text-6xl mb-4">🧱</div>
+                <h3 class="text-2xl font-bold mb-2" style="color: #003F5C;">2. Le SaaS "Headless"</h3>
+                <p class="text-gray-600">Le logiciel "sans tête". Les applications se séparent de leur interface graphique pour exposer leurs fonctionnalités brutes, les rendant directement consommables par les agents IA.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center flex flex-col items-center">
+                <div class="text-6xl mb-4">🔌</div>
+                <h3 class="text-2xl font-bold mb-2" style="color: #003F5C;">3. Les APIs (Interfaces)</h3>
+                <p class="text-gray-600">Le ciment de l'écosystème. Les APIs sont le langage universel qui permet aux agents, services et applications de communiquer, d'échanger des données et de collaborer de manière standardisée.</p>
+            </div>
+
+
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6 mt-8">
+                 <h2 class="text-3xl font-bold text-center mb-2">L'Écosystème Agentique en Action</h2>
+                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Voici une illustration du fonctionnement de cet écosystème. Suivez le flux d'une simple requête utilisateur à sa résolution complexe par une chaîne d'agents et de services collaborant en coulisses.</p>
+                 <div class="flex flex-col items-center text-center">
+                     <div class="bg-blue-100 border-2 border-blue-400 rounded-lg p-4 shadow">
+                         <p class="font-bold text-lg">🙋‍♂️ L'Utilisateur</p>
+                         <p class="text-sm italic">"Organise-moi des vacances en Italie."</p>
+                     </div>
+                     <div class="flow-arrow-down my-2"></div>
+                     <div class="bg-purple-100 border-2 border-purple-400 rounded-lg p-4 shadow">
+                         <p class="font-bold text-lg">🤖 Agent Personnel</p>
+                         <p class="text-sm">Reçoit et décompose la tâche complexe.</p>
+                     </div>
+                     <div class="flow-arrow-down my-2"></div>
+                     <div class="w-full flex flex-col md:flex-row justify-around items-center md:items-start mt-4">
+                         <div class="flex flex-col items-center">
+                            <div class="bg-green-100 border-2 border-green-400 rounded-lg p-3 shadow">
+                                <p class="font-bold">🤖 Agent Spécialisé (Vols)</p>
+                            </div>
+                            <div class="flow-arrow-down my-1"></div>
+                            <div class="bg-gray-100 border border-gray-400 rounded-lg p-2 text-sm">
+                                <p>SaaS Headless (Compagnies Aériennes)</p>
+                            </div>
+                         </div>
+                         <div class="flex flex-col items-center my-4 md:my-0">
+                            <div class="bg-green-100 border-2 border-green-400 rounded-lg p-3 shadow">
+                                <p class="font-bold">🤖 Agent Spécialisé (Hôtels)</p>
+                            </div>
+                            <div class="flow-arrow-down my-1"></div>
+                             <div class="bg-gray-100 border border-gray-400 rounded-lg p-2 text-sm">
+                                <p>SaaS Headless (Plateformes de Réservation)</p>
+                            </div>
+                         </div>
+                         <div class="flex flex-col items-center">
+                            <div class="bg-green-100 border-2 border-green-400 rounded-lg p-3 shadow">
+                                <p class="font-bold">🤖 Agent Spécialisé (Activités)</p>
+                            </div>
+                             <div class="flow-arrow-down my-1"></div>
+                             <div class="bg-gray-100 border border-gray-400 rounded-lg p-2 text-sm">
+                                <p>SaaS Headless (Guides & Musées)</p>
+                            </div>
+                         </div>
+                     </div>
+                      <div class="flow-arrow-down my-2 transform rotate-180"></div>
+                     <div class="bg-purple-100 border-2 border-purple-400 rounded-lg p-4 shadow mt-4">
+                         <p class="font-bold text-lg">🤖 Agent Personnel</p>
+                         <p class="text-sm">Compile, arbitre et propose un itinéraire optimisé.</p>
+                     </div>
+                     <div class="flow-arrow-down my-2"></div>
+                      <div class="bg-blue-100 border-2 border-blue-400 rounded-lg p-4 shadow">
+                         <p class="font-bold text-lg">🎉 Résultat pour l'Utilisateur</p>
+                         <p class="text-sm italic">"Voici trois options d'itinéraires complets."</p>
+                     </div>
+                 </div>
+            </section>
+            
+            <section class="md:col-span-1 lg:col-span-1 bg-white rounded-lg shadow-lg p-6 mt-8 flex flex-col">
+                <h2 class="text-2xl font-bold text-center mb-4">IA Générative vs. IA Agentique</h2>
+                <p class="text-center text-gray-600 mb-4 flex-grow">L'IA agentique n'est pas qu'une simple extension de l'IA générative. Elle représente un changement de paradigme, passant de la création de contenu à la prise d'action proactive. Ce diagramme compare leurs caractéristiques clés.</p>
+                <div class="chart-container flex-shrink-0">
+                    <canvas id="agenticVsGenerativeChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 mt-8">
+                <h2 class="text-3xl font-bold text-center mb-4">La Standardisation de la Communication</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Pour que des millions d'agents et de services collaborent efficacement, des protocoles de communication standardisés sont indispensables. Deux initiatives majeures émergent pour éviter le chaos numérique.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="border-b-2 p-4 text-lg font-bold" style="border-color: #6699CC; color: #003F5C;">Protocole</th>
+                                <th class="border-b-2 p-4 text-lg font-bold" style="border-color: #6699CC; color: #003F5C;">Objectif Principal</th>
+                                <th class="border-b-2 p-4 text-lg font-bold" style="border-color: #6699CC; color: #003F5C;">Analogie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-blue-50">
+                                <td class="p-4 font-semibold">MCP (Machine-readable Capabilities Protocol)</td>
+                                <td class="p-4">Permettre à un agent de découvrir ce qu'un service peut faire. (Agent ↔️ Service)</td>
+                                <td class="p-4">La "notice technique universelle" d'un outil.</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50">
+                                <td class="p-4 font-semibold">A2A (Agent-to-Agent Protocol)</td>
+                                <td class="p-4">Permettre à différents agents de collaborer sur une tâche. (Agent ↔️ Agent)</td>
+                                <td class="p-4">Le "langage commun" et les règles de procédure d'une équipe.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section class="md:col-span-1 bg-white rounded-lg shadow-lg p-6 mt-8 flex flex-col">
+                <h2 class="text-2xl font-bold text-center mb-4">Projection de Croissance du SaaS Headless</h2>
+                <p class="text-center text-gray-600 mb-4 flex-grow">L'adoption de l'architecture "headless" est une tendance clé, car elle est indispensable à la consommation de services par les agents. La croissance devrait s'accélérer à mesure que l'écosystème agentique mûrit.</p>
+                <div class="chart-container flex-shrink-0">
+                    <canvas id="headlessAdoptionChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="lg:col-span-3 text-center my-8">
+                <h2 class="text-3xl font-bold mb-4">Les Défis à Relever sur la Route de 2030</h2>
+                <p class="text-gray-600 max-w-4xl mx-auto">Cette transformation prometteuse s'accompagne de défis critiques qu'il est impératif d'adresser pour garantir un développement sain, sécurisé et éthique de l'écosystème agentique.</p>
+            </section>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-5xl mb-4">⚖️</div>
+                <h3 class="text-xl font-bold mb-2">Gouvernance</h3>
+                <p class="text-gray-600">Définir des règles claires pour éviter un "Far West" numérique et assurer une collaboration ordonnée entre les agents.</p>
+            </div>
+            
+             <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-5xl mb-4">🔒</div>
+                <h3 class="text-xl font-bold mb-2">Sécurité</h3>
+                <p class="text-gray-600">Protéger un système où chaque agent autonome est une porte d'entrée potentielle pour des attaques malveillantes.</p>
+            </div>
+            
+             <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="text-5xl mb-4">❤️</div>
+                <h3 class="text-xl font-bold mb-2">Éthique & Transparence</h3>
+                <p class="text-gray-600">Garantir des décisions justes, sans biais, et pouvoir comprendre "pourquoi" un agent a pris une certaine décision (éviter l'effet "boîte noire").</p>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-200">
+            <p class="text-gray-600">Cette infographie est une synthèse visuelle basée sur des rapports de recherche sur les tendances technologiques futures.</p>
+            <p class="text-sm text-gray-400 mt-2">Conception et Développement par Canvas Infographics, Juin 2025.</p>
+        </footer>
+    </div>
+
+<script>
+    const brilliantBlues = {
+        dark: '#003F5C',
+        mediumDark: '#365F7A',
+        medium: '#6699CC',
+        light: '#99CCFF',
+        extraLight: '#C2E0FF',
+        background: 'rgba(153, 204, 255, 0.2)'
+    };
+    
+    function wrapLabels(label, maxLength) {
+        if (typeof label !== 'string' || label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        for (const word of words) {
+            if ((currentLine + word).length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = '';
+            }
+            currentLine += word + ' ';
+        }
+        lines.push(currentLine.trim());
+        return lines.filter(line => line.length > 0);
+    }
+    
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        return Array.isArray(label) ? label.join(' ') : label;
+    };
+    
+    const commonTooltipOptions = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        }
+    };
+
+    const radarData = {
+        labels: ['Autonomie', 'Proactivité', 'Interaction Externe', wrapLabels('Orientation Objectif Long Terme', 16), 'Adaptabilité'],
+        datasets: [{
+            label: 'IA Agentique',
+            data: [9, 9, 8, 9, 8],
+            fill: true,
+            backgroundColor: 'rgba(0, 63, 92, 0.4)',
+            borderColor: brilliantBlues.dark,
+            pointBackgroundColor: brilliantBlues.dark,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: brilliantBlues.dark
+        }, {
+            label: 'IA Générative',
+            data: [2, 3, 4, 2, 5],
+            fill: true,
+            backgroundColor: 'rgba(102, 153, 204, 0.4)',
+            borderColor: brilliantBlues.medium,
+            pointBackgroundColor: brilliantBlues.medium,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: brilliantBlues.medium
+        }]
+    };
+
+    new Chart(document.getElementById('agenticVsGenerativeChart'), {
+        type: 'radar',
+        data: radarData,
+        options: {
+            ...commonTooltipOptions,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: '#ddd' },
+                    grid: { color: '#eee' },
+                    pointLabels: { font: { size: 12 } },
+                    ticks: {
+                        backdropColor: 'transparent',
+                        stepSize: 2
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 10
+                }
+            },
+            plugins: {
+                ...commonTooltipOptions.plugins,
+                legend: { position: 'top' }
+            }
+        }
+    });
+
+    const headlessData = {
+        labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+        datasets: [{
+            label: 'Taux d\'adoption "Headless" (%)',
+            data: [15, 22, 35, 50, 65, 75, 82],
+            fill: true,
+            borderColor: brilliantBlues.dark,
+            backgroundColor: brilliantBlues.background,
+            tension: 0.4
+        }]
+    };
+
+    new Chart(document.getElementById('headlessAdoptionChart'), {
+        type: 'line',
+        data: headlessData,
+        options: {
+            ...commonTooltipOptions,
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        callback: function(value) { return value + "%" }
+                    }
+                }
+            },
+            plugins: {
+                ...commonTooltipOptions.plugins,
+                legend: { display: false }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
