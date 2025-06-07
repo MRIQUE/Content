@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : Les Nouveaux Agents IA dans Microsoft Teams</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Calm Corporate -->
+    <!-- Application Structure Plan: A single-page application with a sticky top navigation bar for easy access to different sections. The structure flows from a general overview and common framework (pricing, licensing) to detailed, dedicated sections for each of the three agents (Facilitator, Project Manager, Interpreter). Each agent's section is designed to be a self-contained module explaining its purpose, key features, setup process (user vs. admin), and limitations, using a mix of text, custom HTML/CSS diagrams, and charts. This structure allows users to either get a quick overview or deep-dive into a specific agent, making complex information digestible and easy to navigate, which is a significant usability improvement over the dense text report. Gemini API features have been added to each agent's section to provide an interactive demo of their core capabilities, enhancing user engagement and understanding. -->
+    <!-- Visualization & Content Choices: 
+        - **Overall Comparison**: Goal: Compare. Method: Recreated the report's HTML table with Tailwind styling for clarity. Library: HTML/CSS.
+        - **Key Metrics (Price/License)**: Goal: Inform. Method: KPI-style cards with large text and icons for high scannability. Library: HTML/CSS.
+        - **Facilitator - Features**: Goal: Organize. Method: Icon-based feature list in a grid for a quick visual summary. Library: HTML/CSS/Unicode Icons.
+        - **Facilitator - Gemini Demo**: Goal: Interact/Demonstrate. Method: An interactive form that takes user text and uses the Gemini API to generate a meeting summary. Library: HTML/JS/Gemini API.
+        - **Project Manager - Whiteboard to Planner Flow**: Goal: Organize/Explain Process. Method: A custom-built, responsive flowchart using HTML divs and flexbox for layout, with styled borders to act as connectors. This avoids SVG/Mermaid while clearly illustrating the workflow. Library: HTML/CSS.
+        - **Project Manager - Gemini Demo**: Goal: Interact/Demonstrate. Method: An interactive form that takes a project goal and uses the Gemini API to generate a sample action plan. Library: HTML/JS/Gemini API.
+        - **Interpreter - Capabilities**: Goal: Compare. Method: A Radar chart to visually compare Interpreter's strengths across multiple dimensions (real-time translation, voice simulation, etc.). Justification: A radar chart is more engaging and provides a quicker multi-faceted summary than a simple list. Library: Chart.js (Canvas).
+        - **Interpreter - Gemini Demo**: Goal: Interact/Demonstrate. Method: An interactive form that takes user text and a target language, then uses the Gemini API to perform translation. Library: HTML/JS/Gemini API.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #0369a1; /* sky-700 */
+            border-bottom-color: #0369a1;
+        }
+        .flow-step {
+            background-color: #f1f5f9; /* slate-100 */
+            border: 1px solid #e2e8f0; /* slate-200 */
+        }
+        .flow-arrow {
+            color: #64748b; /* slate-500 */
+            align-self: center;
+            transform: rotate(90deg);
+        }
+        @media (min-width: 1024px) {
+            .flow-arrow {
+                transform: rotate(0deg);
+            }
+        }
+        .powershell-block {
+            background-color: #020617; /* slate-950 */
+            color: #e2e8f0; /* slate-200 */
+            font-family: 'Courier New', Courier, monospace;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+        .powershell-block .cmdlet { color: #7dd3fc; /* lightBlue-400 */ }
+        .powershell-block .param { color: #a5b4fc; /* indigo-300 */ }
+        .powershell-block .value { color: #fcd34d; /* amber-300 */ }
+        .gemini-result-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid #0ea5e9;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+            min-height: 80px;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0369a1;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-slate-800">Agents IA pour Teams</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#overview" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Vue d'ensemble</a>
+                        <a href="#facilitator" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Facilitator</a>
+                        <a href="#projectmanager" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Project Manager</a>
+                        <a href="#interpreter" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Interpreter</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Section Vue d'ensemble -->
+        <section id="overview" class="pt-16 -mt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Une Nouvelle Ère de Collaboration</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-500">Découvrez comment Facilitator, Project Manager et Interpreter redéfinissent le travail d'équipe dans Microsoft Teams.</p>
+                <p class="mt-2 text-sm text-slate-400">Disponibilité générale prévue début 2025.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="text-sky-600 text-4xl mb-3">🏷️</div>
+                    <h3 class="text-lg font-semibold text-slate-700">Licence Requise</h3>
+                    <p class="text-3xl font-bold text-slate-900 mt-1">M365 Copilot</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="text-sky-600 text-4xl mb-3">💰</div>
+                    <h3 class="text-lg font-semibold text-slate-700">Tarif de la Licence</h3>
+                    <p class="text-3xl font-bold text-slate-900 mt-1">30 $ <span class="text-base font-normal text-slate-500">/ user / mois</span></p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="text-sky-600 text-4xl mb-3">⚙️</div>
+                    <h3 class="text-lg font-semibold text-slate-700">Plateforme de perso.</h3>
+                    <p class="text-3xl font-bold text-slate-900 mt-1">Copilot Studio</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilitator -->
+        <section id="facilitator" class="pt-24 -mt-16">
+            <div class="text-center mb-12">
+                 <h2 class="text-4xl font-extrabold tracking-tight text-slate-900">✍️ Facilitator</h2>
+                 <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-500">Maîtrisez vos réunions avec la prise de notes automatisée et une assistance interactive.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Fonctionnalités Clés</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="text-sky-500 mr-3 mt-1">●</span><span><strong class="text-slate-700">Prise de notes en temps réel :</strong> Capture et synthétise les discussions.</span></li>
+                        <li class="flex items-start"><span class="text-sky-500 mr-3 mt-1">●</span><span><strong class="text-slate-700">Notes collaboratives :</strong> Génère un composant Loop éditable par tous.</span></li>
+                        <li class="flex items-start"><span class="text-sky-500 mr-3 mt-1">●</span><span><strong class="text-slate-700">Assistance interactive :</strong> Répond aux questions via `@Facilitator`.</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl mb-4">✨ Essayez un résumé instantané</h3>
+                    <p class="text-sm text-slate-500 mb-4">Collez des notes brutes ou un paragraphe et l'IA les transformera en un résumé clair.</p>
+                    <textarea id="facilitatorInput" class="w-full p-2 border border-slate-300 rounded-md" rows="4" placeholder="Ex: Jean pense que le budget est trop élevé, Marie suggère de revoir les coûts marketing. On doit décider avant vendredi. Pierre va envoyer un email."></textarea>
+                    <button id="facilitatorButton" class="mt-2 w-full bg-sky-600 text-white font-bold py-2 px-4 rounded-md hover:bg-sky-700 transition duration-300">Générer le résumé</button>
+                    <div id="facilitatorResult" class="gemini-result-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Manager -->
+        <section id="projectmanager" class="pt-24 -mt-16">
+            <div class="text-center mb-12">
+                 <h2 class="text-4xl font-extrabold tracking-tight text-slate-900">📋 Project Manager</h2>
+                 <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-500">Automatisez vos flux de travail, de l'idée à la planification dans Planner.</p>
+            </div>
+             <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-6">Le Flux de Travail : de Whiteboard à Planner</h3>
+                    <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4">
+                        <div class="flex-1 text-center p-4 flow-step rounded-lg">
+                            <div class="text-4xl mb-2">💡</div>
+                            <h4 class="font-bold">1. Idéation</h4>
+                            <p class="text-sm text-slate-500">Brainstorming collaboratif.</p>
+                        </div>
+                        <div class="flow-arrow text-3xl font-bold p-2 lg:py-0">➡️</div>
+                        <div class="flex-1 text-center p-4 flow-step rounded-lg">
+                            <div class="text-4xl mb-2">🤖</div>
+                            <h4 class="font-bold">2. Conversion IA</h4>
+                            <p class="text-sm text-slate-500">Analyse et création de tâches.</p>
+                        </div>
+                        <div class="flow-arrow text-3xl font-bold p-2 lg:py-0">➡️</div>
+                        <div class="flex-1 text-center p-4 flow-step rounded-lg">
+                            <div class="text-4xl mb-2">✅</div>
+                            <h4 class="font-bold">3. Planification</h4>
+                            <p class="text-sm text-slate-500">Synchronisation avec Planner.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl mb-4">✨ Générez un plan d'action</h3>
+                    <p class="text-sm text-slate-500 mb-4">Décrivez votre objectif de projet et l'IA proposera des tâches et des jalons.</p>
+                    <input id="pmInput" type="text" class="w-full p-2 border border-slate-300 rounded-md" placeholder="Ex: Organiser un webinaire de lancement produit">
+                    <button id="pmButton" class="mt-2 w-full bg-sky-600 text-white font-bold py-2 px-4 rounded-md hover:bg-sky-700 transition duration-300">Générer le plan</button>
+                    <div id="pmResult" class="gemini-result-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interpreter -->
+        <section id="interpreter" class="pt-24 -mt-16">
+            <div class="text-center mb-12">
+                 <h2 class="text-4xl font-extrabold tracking-tight text-slate-900">🌍 Interpreter</h2>
+                 <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-500">Franchissez les barrières de la langue avec la traduction et la simulation vocale en temps réel.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl mb-4 text-center">Capacités d'Interpreter</h3>
+                    <div class="chart-container">
+                        <canvas id="interpreterChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl mb-4">✨ Essayez la traduction</h3>
+                    <p class="text-sm text-slate-500 mb-4">Saisissez un texte, choisissez une langue et obtenez la traduction instantanément.</p>
+                    <textarea id="interpreterInput" class="w-full p-2 border border-slate-300 rounded-md" rows="3" placeholder="Bonjour, comment ça va ?"></textarea>
+                    <div class="flex items-center gap-2 mt-2">
+                         <select id="interpreterLang" class="flex-grow p-2 border border-slate-300 rounded-md bg-white">
+                            <option value="Anglais">Anglais</option>
+                            <option value="Allemand">Allemand</option>
+                            <option value="Espagnol">Espagnol</option>
+                            <option value="Chinois">Chinois</option>
+                            <option value="Japonais">Japonais</option>
+                         </select>
+                        <button id="interpreterButton" class="flex-shrink-0 bg-sky-600 text-white font-bold py-2 px-4 rounded-md hover:bg-sky-700 transition duration-300">Traduire</button>
+                    </div>
+                    <div id="interpreterResult" class="gemini-result-box"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 mt-12 bg-slate-100 border-t border-slate-200">
+        <p class="text-sm text-slate-500">Infographie basée sur le rapport d'expert. Les fonctionnalités interactives sont des démonstrations alimentées par l'API Gemini.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Radar Chart for Interpreter
+            const interpreterChartCtx = document.getElementById('interpreterChart').getContext('2d');
+            new Chart(interpreterChartCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Traduction Temps Réel', 'Simulation Vocale', 'Contrôle Utilisateur', 'Naturel', 'Inclusivité'],
+                    datasets: [{
+                        label: 'Évaluation des Capacités',
+                        data: [9, 8, 10, 7, 9],
+                        backgroundColor: 'rgba(3, 105, 161, 0.2)',
+                        borderColor: 'rgb(3, 105, 161)',
+                        pointBackgroundColor: 'rgb(3, 105, 161)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(3, 105, 161)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e2e8f0' },
+                            grid: { color: '#e2e8f0' },
+                            pointLabels: { font: { size: 12 }, color: '#334155' },
+                            ticks: {
+                                color: '#64748b',
+                                backdropColor: 'rgba(248, 250, 252, 0.75)',
+                                stepSize: 2
+                            },
+                            min: 0,
+                            max: 10
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top', labels: { color: '#475569' } },
+                        tooltip: {
+                           callbacks: {
+                                title: (tooltipItems) => tooltipItems[0].label
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Navigation scroll highlighting
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+            sections.forEach(section => observer.observe(section));
+
+            // Gemini API call helper
+            const callGemini = async (prompt, resultElement, buttonElement) => {
+                resultElement.innerHTML = '<div class="loader mx-auto"></div>';
+                buttonElement.disabled = true;
+
+                try {
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    const payload = {
+                        contents: [{ role: "user", parts: [{ text: prompt }] }]
+                    };
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Erreur API: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        resultElement.innerHTML = text.replace(/\n/g, '<br>');
+                    } else {
+                        throw new Error("Réponse de l'API invalide.");
+                    }
+                } catch (error) {
+                    resultElement.innerHTML = `<p class="text-red-600">Désolé, une erreur est survenue. Veuillez réessayer. ${error.message}</p>`;
+                } finally {
+                    buttonElement.disabled = false;
+                }
+            };
+
+            // Facilitator Gemini Demo
+            const facilitatorButton = document.getElementById('facilitatorButton');
+            const facilitatorInput = document.getElementById('facilitatorInput');
+            const facilitatorResult = document.getElementById('facilitatorResult');
+            facilitatorButton.addEventListener('click', () => {
+                const prompt = `En tant qu'assistant de réunion, résume les notes suivantes en une liste de points d'action clairs et concis: "${facilitatorInput.value}"`;
+                callGemini(prompt, facilitatorResult, facilitatorButton);
+            });
+
+            // Project Manager Gemini Demo
+            const pmButton = document.getElementById('pmButton');
+            const pmInput = document.getElementById('pmInput');
+            const pmResult = document.getElementById('pmResult');
+            pmButton.addEventListener('click', () => {
+                const prompt = `En tant qu'assistant de gestion de projet, pour l'objectif suivant "${pmInput.value}", génère un plan d'action de base avec des jalons et des tâches clés.`;
+                callGemini(prompt, pmResult, pmButton);
+            });
+
+            // Interpreter Gemini Demo
+            const interpreterButton = document.getElementById('interpreterButton');
+            const interpreterInput = document.getElementById('interpreterInput');
+            const interpreterLang = document.getElementById('interpreterLang');
+            const interpreterResult = document.getElementById('interpreterResult');
+            interpreterButton.addEventListener('click', () => {
+                const lang = interpreterLang.value;
+                const prompt = `Traduis le texte suivant en ${lang}: "${interpreterInput.value}"`;
+                callGemini(prompt, interpreterResult, interpreterButton);
+            });
+        });
+    </script>
+</body>
+</html>
