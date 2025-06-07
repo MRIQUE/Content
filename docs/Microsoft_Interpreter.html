@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mode d'Emploi Détaillé : Agent Interpreter pour Microsoft Teams</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind gray-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(90deg);
+            color: #7D5BA6;
+        }
+         @media (min-width: 1024px) {
+            .flow-arrow {
+                transform: rotate(0deg);
+            }
+        }
+        .gradient-header {
+            background: linear-gradient(120deg, #0B2D5B, #7D5BA6);
+        }
+        .step-card {
+            border-left-width: 4px;
+            border-color: #A765A8;
+            background-color: white;
+            transition: all 0.3s ease-in-out;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="gradient-header text-white p-8 md:p-16 text-center shadow-lg">
+        <h1 class="text-4xl md:text-6xl font-black mb-3">Parlez toutes les langues. Avec votre voix.</h1>
+        <p class="text-xl md:text-2xl font-light max-w-4xl mx-auto">Un guide complet pour maîtriser <strong class="font-semibold">Interpreter</strong>, l'agent de traduction en temps réel de Microsoft Teams.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Section 1: Introduction & Capacités Clés -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#0B2D5B]">L'Essence d'Interpreter</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Interpreter n'est pas un simple traducteur. C'est un assistant de communication intégré qui analyse, traduit et restitue la parole en temps réel, créant des réunions plus inclusives et naturelles.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-[#3E5F8A]">Capacités Fondamentales</h3>
+                    <div class="chart-container h-[300px] md:h-[350px]">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-[#3E5F8A]">Bénéfices pour votre équipe</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start p-4 bg-slate-50 rounded-lg">
+                            <div class="text-3xl mr-4">🌐</div>
+                            <div>
+                                <h4 class="font-bold">Briser les barrières linguistiques</h4>
+                                <p class="text-gray-600">Permet une collaboration fluide entre des équipes internationales sans effort.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-4 bg-slate-50 rounded-lg">
+                            <div class="text-3xl mr-4">🤝</div>
+                            <div>
+                                <h4 class="font-bold">Augmenter l'inclusivité</h4>
+                                <p class="text-gray-600">Chaque participant peut s'exprimer et comprendre dans sa langue de confort.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start p-4 bg-slate-50 rounded-lg">
+                            <div class="text-3xl mr-4">🗣️</div>
+                            <div>
+                                <h4 class="font-bold">Rendre les échanges plus naturels</h4>
+                                <p class="text-gray-600">La simulation vocale conserve l'identité de l'orateur pour des conversations plus engageantes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Flux de Traduction -->
+        <section class="mb-16 bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#0B2D5B]">Comment ça marche ? Le Flux de Traduction</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">En quelques millisecondes, la technologie Azure AI opère en coulisses pour offrir une expérience de traduction transparente. Voici les étapes clés du processus.</p>
+            <div class="flex flex-col lg:flex-row items-stretch justify-around gap-4">
+                <div class="flex-1 text-center p-4">
+                    <div class="text-5xl mb-3">🇫🇷</div>
+                    <h3 class="font-bold text-lg">1. Parole de l'orateur</h3>
+                    <p class="text-sm text-gray-500">Un participant parle dans sa langue (ex: Français).</p>
+                </div>
+                <div class="flow-arrow text-4xl font-light p-2 lg:py-0">»</div>
+                <div class="flex-1 text-center p-4 bg-slate-100 rounded-lg">
+                    <div class="text-5xl mb-3">✍️</div>
+                    <h3 class="font-bold text-lg">2. Parole vers Texte</h3>
+                    <p class="text-sm text-gray-500">Azure AI retranscrit la parole en texte.</p>
+                </div>
+                <div class="flow-arrow text-4xl font-light p-2 lg:py-0">»</div>
+                <div class="flex-1 text-center p-4 bg-slate-100 rounded-lg">
+                    <div class="text-5xl mb-3">🔄</div>
+                    <h3 class="font-bold text-lg">3. Moteur de Traduction</h3>
+                    <p class="text-sm text-gray-500">Le texte est traduit dans la langue cible.</p>
+                </div>
+                <div class="flow-arrow text-4xl font-light p-2 lg:py-0">»</div>
+                <div class="flex-1 text-center p-4 bg-slate-100 rounded-lg">
+                    <div class="text-5xl mb-3">🔊</div>
+                    <h3 class="font-bold text-lg">4. Texte vers Parole</h3>
+                    <p class="text-sm text-gray-500">Le texte traduit est synthétisé en audio avec la voix simulée.</p>
+                </div>
+                 <div class="flow-arrow text-4xl font-light p-2 lg:py-0">»</div>
+                 <div class="flex-1 text-center p-4">
+                    <div class="text-5xl mb-3">🇩🇪</div>
+                    <h3 class="font-bold text-lg">5. Écoute du destinataire</h3>
+                    <p class="text-sm text-gray-500">L'autre participant entend la traduction (ex: Allemand).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Plateformes et Langues -->
+        <section class="mb-16">
+             <h2 class="text-3xl font-bold text-center mb-8 text-[#0B2D5B]">Disponibilité et Langues Prises en Charge</h2>
+             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                 <div class="lg:col-span-3 bg-white p-6 rounded-lg shadow-md">
+                     <h3 class="text-xl font-bold mb-4 text-[#3E5F8A]">9 Langues pour une Collaboration Globale</h3>
+                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#F87184]">Français</div>
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#F87184]">Anglais</div>
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#F87184]">Allemand</div>
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#D06A9E]">Chinois (Mandarin)</div>
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#D06A9E]">Espagnol</div>
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#D06A9E]">Portugais (Brésil)</div>
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#A765A8]">Japonais</div>
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#A765A8]">Italien</div>
+                        <div class="p-4 bg-gray-100 rounded-lg font-semibold border-b-4 border-[#A765A8]">Coréen</div>
+                    </div>
+                 </div>
+                 <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-[#3E5F8A]">Plateformes Compatibles</h3>
+                    <div class="chart-container h-[250px]">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-2">Non supporté sur Safari, Teams Free, Webinaires, et certains types de réunions.</p>
+                 </div>
+             </div>
+        </section>
+
+        <!-- Section 4: Mode d'emploi -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#0B2D5B]">Guide d'Utilisation Pas à Pas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="step-card p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-[#A765A8] text-white rounded-full h-10 w-10 text-xl font-bold flex items-center justify-center mr-4">1</span>
+                        <h3 class="text-lg font-bold text-[#0B2D5B]">Activation (Admin)</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">L'admin doit activer Interpreter via <strong class="font-mono bg-gray-200 px-1 rounded">PowerShell</strong>. C'est un prérequis indispensable.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="step-card p-6 rounded-lg shadow">
+                     <div class="flex items-center mb-3">
+                        <span class="bg-[#A765A8] text-white rounded-full h-10 w-10 text-xl font-bold flex items-center justify-center mr-4">2</span>
+                        <h3 class="text-lg font-bold text-[#0B2D5B]">Lancer en Réunion</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Dans les contrôles, allez à <strong class="font-semibold">... (Plus) > Langue et parole > Activer Interpreter</strong>.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-card p-6 rounded-lg shadow">
+                     <div class="flex items-center mb-3">
+                        <span class="bg-[#A765A8] text-white rounded-full h-10 w-10 text-xl font-bold flex items-center justify-center mr-4">3</span>
+                        <h3 class="text-lg font-bold text-[#0B2D5B]">Configurer vos préférences</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Choisissez votre langue d'écoute, la balance audio et si vous autorisez la <strong class="font-semibold">simulation de votre voix</strong>.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-card p-6 rounded-lg shadow">
+                     <div class="flex items-center mb-3">
+                        <span class="bg-[#A765A8] text-white rounded-full h-10 w-10 text-xl font-bold flex items-center justify-center mr-4">4</span>
+                        <h3 class="text-lg font-bold text-[#0B2D5B]">Communiquer !</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Parlez normalement. Écoutez la traduction. Ajustez les paramètres à tout moment via le même menu.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Performance & Limitations -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#0B2D5B]">Performance et Meilleures Pratiques</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-[#3E5F8A]">Qualité de Traduction vs Complexité de la Réunion</h3>
+                    <p class="text-sm text-gray-500 mb-4">La performance est optimale dans des réunions structurées. Elle diminue avec les interruptions et les dialogues rapides.</p>
+                    <div class="chart-container h-[250px]">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-[#3E5F8A]">Optimisez votre Expérience</h3>
+                    <div class="chart-container h-[250px]">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Access & Future -->
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#0B2D5B]">Conditions d'Accès et Avenir</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="kpi-card">
+                    <h4 class="text-lg font-semibold text-gray-500 mb-2">Licence Requise</h4>
+                    <p class="text-4xl font-black text-[#0B2D5B]">M365 Copilot</p>
+                    <p class="text-gray-600 mt-2">Un prérequis pour activer et utiliser Interpreter.</p>
+                </div>
+                <div class="kpi-card">
+                    <h4 class="text-lg font-semibold text-gray-500 mb-2">Statut Actuel</h4>
+                    <p class="text-4xl font-black text-[#0B2D5B]">Préversion</p>
+                    <p class="text-gray-600 mt-2">L'outil est en cours d'amélioration grâce aux retours utilisateurs.</p>
+                </div>
+                <div class="kpi-card">
+                    <h4 class="text-lg font-semibold text-gray-500 mb-2">Investissement</h4>
+                    <p class="text-4xl font-black text-[#0B2D5B]">$30 / mois</p>
+                    <p class="text-gray-600 mt-2">Coût de la licence Copilot, par utilisateur.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center p-8 mt-12 bg-gray-900 text-gray-400">
+        <p>Infographie créée pour une compréhension détaillée de l'agent Interpreter. Données et fonctionnalités basées sur les informations de la préversion publique et sujettes à modification.</p>
+    </footer>
+
+    <script>
+        const colorPalette = ['#0B2D5B', '#3E5F8A', '#7D5BA6', '#A765A8', '#D06A9E', '#F87184'];
+        
+        const wrapLabel = (label) => {
+            if (typeof label === 'string' && label.length > 16) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: '#4b5563' } },
+                tooltip: {
+                    callbacks: { title: tooltipTitleCallback },
+                    backgroundColor: '#0B2D5B',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                    padding: 10,
+                    cornerRadius: 4
+                }
+            }
+        };
+
+        // Radar Chart
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Traduction Temps Réel', 'Simulation Vocale', 'Inclusivité', 'Naturel de la conversation', 'Contrôle Utilisateur'],
+                datasets: [{
+                    label: 'Note de Capacité',
+                    data: [9, 8, 9, 7, 10],
+                    backgroundColor: 'rgba(125, 91, 166, 0.2)',
+                    borderColor: '#7D5BA6',
+                    pointBackgroundColor: '#7D5BA6',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#7D5BA6'
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                 scales: {
+                    r: {
+                        angleLines: { color: '#e5e7eb' },
+                        grid: { color: '#e5e7eb' },
+                        pointLabels: { font: { size: 12 }, color: '#374151' },
+                        ticks: {
+                            color: '#6b7280',
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            stepSize: 2
+                        },
+                         min: 0,
+                         max: 10
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Desktop (Win/Mac)', 'Web (Chrome, Edge, Firefox)', 'Mobile (iOS/Android)'],
+                datasets: [{
+                    data: [45, 30, 25],
+                    backgroundColor: ['#3E5F8A', '#7D5BA6', '#D06A9E'],
+                    hoverOffset: 4
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+
+        // Line Chart
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Structurée (1 orateur)', 'Tour de table', 'Discussion modérée', 'Débat animé', 'Interruptions fréquentes'],
+                datasets: [{
+                    label: 'Qualité de la Traduction',
+                    data: [95, 90, 75, 50, 30],
+                    fill: true,
+                    borderColor: '#7D5BA6',
+                    backgroundColor: 'rgba(125, 91, 166, 0.1)',
+                    tension: 0.3
+                }]
+            },
+            options: { ...defaultChartOptions, plugins: { ...defaultChartOptions.plugins, legend: { display: false } } }
+        });
+
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Parler clairement', 'Un orateur à la fois', 'Utiliser un bon micro', 'Éviter le jargon'],
+                datasets: [{
+                    label: 'Impact sur la Qualité',
+                    data: [9, 8, 8.5, 7],
+                    backgroundColor: '#A765A8',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                scales: { x: { display: false }, y: { grid: { display: false } } },
+                plugins: { ...defaultChartOptions.plugins, legend: { display: false }, title: { display: true, text: 'Meilleures pratiques', color: '#3E5F8A' } }
+            }
+        });
+
+    </script>
+</body>
+</html>
