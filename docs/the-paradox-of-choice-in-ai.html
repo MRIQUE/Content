@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The AI Paradox of Choice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!--
+    Infographic Narrative Plan:
+    1.  Hook: The deceptive promise of an all-powerful AI agent.
+    2.  The Problem: Introduce the Paradox of Choice and visualize its negative consequences (precision, latency, cost).
+    3.  The Rule: Clearly present the recommended number of tools per agent.
+    4.  The Solution: Explain the paradigm shift to multi-agent systems using a flowchart.
+    5.  The Team: Detail the structure of a specialized AI agent team.
+    6.  Conclusion: Summarize the benefits and mention enabling frameworks.
+
+    Visualization Choices (NO SVG / NO MERMAID JS CONFIRMED):
+    -   Headline Stat: Goal: Inform. Choice: Single Big Number (HTML/CSS). Justification: High-impact, simple message.
+    -   Negative Outcomes: Goal: Compare. Choice: Bar Chart (Chart.js/Canvas). Justification: Direct comparison of metrics.
+    -   Tool Rules: Goal: Organize. Choice: Tiered List with Icons (HTML/CSS). Justification: Clear, scannable, and visually coded thresholds.
+    -   Multi-Agent Workflow: Goal: Organize. Choice: Flow Chart (HTML/CSS). Justification: Illustrates the process flow clearly without SVG.
+    -   Agent Roles: Goal: Organize. Choice: Styled Cards (HTML/CSS). Justification: Modern, clean presentation of categorical info.
+
+    Color Palette Selection: "Energetic & Playful" for a vibrant, modern, and high-contrast design.
+    -   #0047FF (Brilliant Blue)
+    -   #00D1FF (Bright Cyan)
+    -   #FF007A (Vivid Pink)
+    -   #FFD700 (Gold)
+    -   #1A202C (Dark Gray - for text)
+    -   #F7FAFC (Light Gray - for background)
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7FAFC;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 40vh;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .flow-line::after {
+            content: '↓';
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0047FF;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-shadow" style="color: #0047FF;">The Paradox of Choice in AI</h1>
+            <p class="text-lg md:text-xl mt-4 text-gray-600 max-w-3xl mx-auto">Why overloading a single AI agent is a recipe for failure, and how to build smarter, more effective AI systems.</p>
+        </header>
+
+        <section id="problem" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">The Alluring (But Flawed) Promise</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">The temptation is to connect hundreds of tools to a single AI agent, believing it will create a super-intelligent, all-powerful entity. The reality is far different.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card p-6">
+                    <h3 class="text-2xl font-bold mb-4" style="color: #FF007A;">The Overload Cascade</h3>
+                    <p class="mb-4">When an agent is given too many tools (e.g., more than 10), it struggles to choose the right one. This triggers a cascade of failures:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="font-bold text-lg mr-3" style="color: #FF007A;">1.</span> <span><b class="text-gray-800">Complex Workflow:</b> The agent cycles through tools, creating a convoluted and inefficient process.</span></li>
+                        <li class="flex items-start"><span class="font-bold text-lg mr-3" style="color: #FF007A;">2.</span> <span><b class="text-gray-800">Increased Latency:</b> Processing time skyrockets, making the system unusable at scale.</span></li>
+                        <li class="flex items-start"><span class="font-bold text-lg mr-3" style="color: #FF007A;">3.</span> <span><b class="text-gray-800">Degraded Precision:</b> The final output becomes less accurate and reliable.</span></li>
+                         <li class="flex items-start"><span class="font-bold text-lg mr-3" style="color: #FF007A;">4.</span> <span><b class="text-gray-800">Exploding Costs:</b> Each failed attempt bloats the context window, consuming more tokens and forcing the use of expensive, high-capacity models.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card p-6">
+                     <h3 class="text-xl font-bold text-center mb-4">Lean vs. Overloaded Agent Performance</h3>
+                     <p class="text-center text-sm text-gray-500 mb-4">A comparison of an agent with an optimal number of tools versus one with too many.</p>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">The Rules of Engagement</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">To avoid the paradox of choice, apply these simple rules for the number of tools connected to a single agent.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="card p-8">
+                    <div class="text-5xl mb-4">✅</div>
+                    <h3 class="text-2xl font-bold mb-2">1-3 Tools</h3>
+                    <p class="font-semibold" style="color: #00D1FF;">SAFE ZONE</p>
+                    <p class="text-gray-600">This is the sweet spot. The agent operates with high precision and efficiency.</p>
+                </div>
+                <div class="card p-8">
+                    <div class="text-5xl mb-4">⚠️</div>
+                    <h3 class="text-2xl font-bold mb-2">4-6 Tools</h3>
+                    <p class="font-semibold" style="color: #FFD700;">CAUTION ZONE</p>
+                    <p class="text-gray-600">Performance begins to degrade. Close monitoring of workflows and precision is critical.</p>
+                </div>
+                <div class="card p-8">
+                     <div class="text-5xl mb-4">❌</div>
+                    <h3 class="text-2xl font-bold mb-2">&gt; 6 Tools</h3>
+                    <p class="font-semibold" style="color: #FF007A;">DANGER ZONE</p>
+                    <p class="text-gray-600">A red flag. The fundamental design of the agentic system must be reconsidered.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="solution" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2">The Paradigm Shift: From Single Agent to a Team</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Instead of one agent that does everything, the solution is to build a team of specialized agents that collaborate, just like a human project team.</p>
+            </div>
+
+            <div class="flex flex-col items-center">
+                <div class="card p-6 w-full md:w-3/4 lg:w-1/2 text-center">
+                    <h4 class="font-bold text-xl">User Request</h4>
+                    <p class="text-sm text-gray-500">e.g., "Write code for a new feature, test it, and update the project ticket."</p>
+                </div>
+
+                <div class="flow-line"></div>
+                
+                <div class="w-full text-center mb-4">
+                     <h3 class="text-2xl font-bold" style="color: #0047FF;">Orchestrator Assigns Tasks</h3>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center gap-4 w-full">
+                    <div class="border-2 border-dashed rounded-lg p-2 flex-1" style="border-color: #00D1FF;">
+                        <div class="card p-4 text-center">
+                            <h4 class="font-bold text-lg">"Knowledge" Agent</h4>
+                            <p class="text-sm text-gray-600">Retrieves info from Jira & Confluence</p>
+                        </div>
+                    </div>
+                     <div class="border-2 border-dashed rounded-lg p-2 flex-1" style="border-color: #FFD700;">
+                        <div class="card p-4 text-center">
+                            <h4 class="font-bold text-lg">"Developer" Agent</h4>
+                            <p class="text-sm text-gray-600">Generates code, writes tests, uses Git</p>
+                        </div>
+                     </div>
+                     <div class="border-2 border-dashed rounded-lg p-2 flex-1" style="border-color: #FF007A;">
+                        <div class="card p-4 text-center">
+                            <h4 class="font-bold text-lg">"DevOps" Agent</h4>
+                            <p class="text-sm text-gray-600">Handles CI/CD, deployment, and infrastructure</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-line"></div>
+
+                <div class="card p-6 w-full md:w-3/4 lg:w-1/2 text-center bg-green-100">
+                    <h4 class="font-bold text-xl text-green-800">Successful Outcome</h4>
+                    <p class="text-sm text-green-700">The entire workflow is completed efficiently and accurately.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="text-center mt-16 pt-8 border-t">
+            <h3 class="text-2xl font-bold mb-4">The Future is a Collaborative System</h3>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-4">Multi-agent systems overcome the paradox of choice, leading to more robust, scalable, and cost-effective AI solutions. Frameworks are making them easier to build than ever.</p>
+            <p class="font-semibold text-gray-500">Frameworks to explore: CrewAI, Google ADK</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(str, max_width) {
+            if (str.length <= max_width) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let current_line = '';
+            for (const word of words) {
+                if ((current_line + ' ' + word).length > max_width) {
+                    lines.push(current_line);
+                    current_line = word;
+                } else {
+                    current_line = current_line ? current_line + ' ' + word : word;
+                }
+            }
+            if (current_line) {
+                lines.push(current_line);
+            }
+            return lines;
+        }
+
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Precision', 'Latency', 'Cost'],
+                datasets: [
+                    {
+                        label: 'Lean Agent (1-3 Tools)',
+                        data: [95, 20, 15],
+                        backgroundColor: 'rgba(0, 209, 255, 0.6)',
+                        borderColor: 'rgba(0, 209, 255, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Overloaded Agent (>6 Tools)',
+                        data: [40, 85, 90],
+                        backgroundColor: 'rgba(255, 0, 122, 0.6)',
+                        borderColor: 'rgba(255, 0, 122, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
