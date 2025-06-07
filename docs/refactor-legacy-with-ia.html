@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : L'IA Révolutionne la Gestion du Code Hérité chez Morgan Stanley</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-step {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .flowchart-arrow {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #3687FF;
+            margin: 0 1rem;
+        }
+         .flowchart-arrow-down {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #3687FF;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-[#F0F8FF] text-[#1E293B]">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#004AAD] mb-2">L'IA face au Code Perdu</h1>
+            <p class="text-lg md:text-xl text-[#0065FF]">Comment Morgan Stanley a transformé un fardeau technologique en avantage stratégique.</p>
+        </header>
+
+        <main>
+            <section id="challenge" class="mb-16">
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center transition-transform duration-300 hover:scale-105">
+                    <span class="text-7xl mb-4 block" role="img" aria-label="document icon">📜</span>
+                    <h2 class="text-3xl font-bold text-[#004AAD] mb-3">Le Défi : Le Poids du Passé</h2>
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                        Comme de nombreuses institutions financières, Morgan Stanley gérait un gigantesque volume de code hérité. Ce code, bien que fonctionnel, représentait un frein majeur à l'innovation, rendant chaque mise à jour complexe, coûteuse et risquée pour les développeurs.
+                    </p>
+                </div>
+            </section>
+
+            <section id="solution" class="mb-16">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">Une Solution d'IA Sur-Mesure</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center transition-transform duration-300 hover:scale-105">
+                        <span class="text-6xl mb-4 block" role="img" aria-label="search icon">🔍</span>
+                        <h3 class="text-2xl font-bold text-[#0065FF] mb-2">Le Traducteur</h3>
+                        <p class="text-slate-600">L'IA analyse le code ancien et en explique la logique, les dépendances et les fonctions cachées. Elle fournit aux développeurs une "carte" claire pour naviguer dans des systèmes complexes, réduisant drastiquement le temps de compréhension.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center transition-transform duration-300 hover:scale-105">
+                        <span class="text-6xl mb-4 block" role="img" aria-label="crane icon">🏗️</span>
+                        <h3 class="text-2xl font-bold text-[#0065FF] mb-2">L'Architecte</h3>
+                        <p class="text-slate-600">Au-delà de l'explication, l'outil aide activement à la modernisation. Il suggère des restructurations ("refactoring") et assiste à la conversion du code vers des langages modernes comme Java, accélérant la migration vers des plateformes plus performantes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="impact" class="mb-16">
+                 <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">Un Impact Massif et Quantifiable</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center items-center h-full transition-transform duration-300 hover:scale-105">
+                        <p class="text-8xl font-black text-[#004AAD]">9M</p>
+                        <p class="text-2xl font-bold text-slate-700 mt-2">lignes de code traitées</p>
+                        <p class="text-slate-600 mt-4 text-center">En une seule année, l'IA a analysé une quantité de code qui aurait nécessité des années d'effort humain.</p>
+                    </div>
+                     <div class="bg-white rounded-2xl shadow-lg p-8 transition-transform duration-300 hover:scale-105">
+                        <h3 class="text-2xl font-bold text-center text-[#0065FF] mb-4">Heures de Développement Économisées</h3>
+                        <div class="chart-container">
+                            <canvas id="hoursSavedChart"></canvas>
+                        </div>
+                         <p class="text-slate-600 mt-4 text-center">L'automatisation des tâches d'analyse et de compréhension a libéré **280 000 heures**, permettant aux développeurs de se concentrer sur des tâches à plus forte valeur ajoutée et l'innovation.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="process" class="mb-16">
+                <div class="bg-white rounded-2xl shadow-lg p-8 transition-transform duration-300 hover:scale-105">
+                    <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">Le Nouveau Workflow du Développeur</h2>
+                    <div class="flex flex-col md:flex-row justify-around items-center text-center">
+                        <div class="flowchart-step mb-4 md:mb-0">
+                            <div class="p-4 rounded-lg bg-blue-100 border-2 border-[#8FC1FF]">
+                                <span class="text-4xl" role="img" aria-label="code icon">💻</span>
+                                <p class="font-semibold mt-2">1. Code Hérité</p>
+                                <p class="text-sm text-slate-600">Le développeur fait face à un bloc de code complexe.</p>
+                            </div>
+                        </div>
+                        <div class="flowchart-arrow-down md:hidden">↓</div>
+                        <div class="flowchart-arrow hidden md:block">→</div>
+                        <div class="flowchart-step mb-4 md:mb-0">
+                           <div class="p-4 rounded-lg bg-blue-100 border-2 border-[#8FC1FF]">
+                                <span class="text-4xl" role="img" aria-label="robot icon">🤖</span>
+                                <p class="font-semibold mt-2">2. Analyse par l'IA</p>
+                                <p class="text-sm text-slate-600">L'outil IA analyse le code en quelques secondes.</p>
+                            </div>
+                        </div>
+                         <div class="flowchart-arrow-down md:hidden">↓</div>
+                        <div class="flowchart-arrow hidden md:block">→</div>
+                        <div class="flowchart-step mb-4 md:mb-0">
+                            <div class="p-4 rounded-lg bg-blue-100 border-2 border-[#8FC1FF]">
+                                <span class="text-4xl" role="img" aria-label="lightbulb icon">💡</span>
+                                <p class="font-semibold mt-2">3. Compréhension</p>
+                                <p class="text-sm text-slate-600">L'IA fournit explications et suggestions claires.</p>
+                            </div>
+                        </div>
+                         <div class="flowchart-arrow-down md:hidden">↓</div>
+                        <div class="flowchart-arrow hidden md:block">→</div>
+                        <div class="flowchart-step">
+                            <div class="p-4 rounded-lg bg-green-100 border-2 border-green-300">
+                                <span class="text-4xl" role="img" aria-label="rocket icon">🚀</span>
+                                <p class="font-semibold mt-2">4. Action Rapide</p>
+                                <p class="text-sm text-slate-600">Le développeur agit vite et avec confiance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="future" class="mb-8">
+                <div class="bg-[#004AAD] rounded-2xl shadow-lg p-8 text-white transition-transform duration-300 hover:scale-105">
+                     <h2 class="text-3xl font-bold mb-6 text-center">Conclusion : Vers une Collaboration Humain-IA</h2>
+                     <div class="max-w-3xl mx-auto text-lg text-center text-[#BBDDFF]">
+                        <p>L'initiative de Morgan Stanley n'est pas une histoire de remplacement de l'humain, mais d'augmentation. L'IA agit comme un co-pilote ultra-performant, prenant en charge les tâches fastidieuses et risquées.</p>
+                        <p class="mt-4 font-bold text-white">Cela permet aux experts humains de se concentrer sur la résolution de problèmes complexes, la créativité et l'architecture logicielle de demain, prouvant que l'avenir du développement réside dans la synergie entre l'intelligence humaine et artificielle.</p>
+                     </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 text-slate-500 text-sm">
+            <p>Infographie basée sur l'article de Developpez.com concernant l'initiative d'IA de Morgan Stanley.</p>
+            <!-- 
+                Plan Narrative: 
+                1. Le Défi: Présenter le problème du code hérité.
+                2. La Solution IA: Détailler les deux fonctions de l'outil.
+                3. L'Impact Quantifié: Montrer les résultats chiffrés.
+                4. Le Processus en Action: Visualiser le nouveau workflow.
+                5. L'Avenir: Conclure sur la collaboration Humain-IA.
+
+                Choix des Visualisations:
+                - Défi: Gros Chiffre/Texte + Icône Unicode. Objectif: Informer. Justification: Impact immédiat et simple. Méthode: HTML/CSS.
+                - Solution: Cartes avec Icônes Unicode. Objectif: Organiser. Justification: Sépare clairement les deux fonctions. Méthode: HTML/CSS.
+                - Impact: Gros Chiffre + Graphique en Donut. Objectif: Informer/Comparer. Justification: Le Donut représente visuellement l'effort économisé. Bibliothèque: Chart.js (Canvas).
+                - Processus: Diagramme de flux. Objectif: Organiser. Justification: Montre la séquence logique du nouveau processus. Méthode: HTML/CSS avec Flexbox.
+                - Avenir: Texte de conclusion mis en exergue. Objectif: Informer. Justification: Un message fort pour conclure le récit. Méthode: HTML/CSS.
+
+                Confirmation: Ni Mermaid JS ni SVG n'ont été utilisés pour la création de cette infographie.
+                Palette de couleurs: "Brilliant Blues"
+            -->
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                } else {
+                    currentLine += ' ' + words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const hoursSavedCtx = document.getElementById('hoursSavedChart').getContext('2d');
+        const totalHoursPlaceholder = 280000 * 3; 
+
+        new Chart(hoursSavedCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Heures Économisées', 'Autres Tâches de Développement'],
+                datasets: [{
+                    label: 'Heures de Travail',
+                    data: [280000, totalHoursPlaceholder],
+                    backgroundColor: [
+                        '#0065FF', 
+                        '#BBDDFF'  
+                    ],
+                    borderColor: [
+                        '#004AAD',
+                        '#8FC1FF'
+                    ],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                         labels: {
+                            color: '#1E293B',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback,
+                           label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += new Intl.NumberFormat('fr-FR').format(context.parsed) + 'h';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    title: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
