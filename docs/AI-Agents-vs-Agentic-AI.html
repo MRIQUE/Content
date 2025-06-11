@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : AI Agents vs Agentic AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!--
+    NEITHER Mermaid JS NOR SVG were used anywhere in this output. All diagrams are built with HTML and Tailwind CSS.
+
+    Color Palette Selection: "Energetic & Playful"
+    - Background: #F2F2F2 (light gray)
+    - Primary Text: #0D0D0D (near black)
+    - AI Agent Accent (Teal): #04BFBF
+    - Agentic AI Accent (Orange): #F2A341
+    - Highlight/Accent (Magenta): #A64F73
+
+    Infographic Narrative Plan:
+    1.  Header & Timeline: Hook the user with the evolution of AI.
+    2.  Introduction: Set the stage with a brief text and a Donut chart visualizing the new AI landscape.
+    3.  Core Comparison (2-Col Grid): Directly compare AI Agents and Agentic AI side-by-side for clarity. Each side details definitions, roles, characteristics, architecture (as an HTML/CSS diagram), and applications.
+    4.  Commonalities & Differences (Full-Width Table): A clear, structured table to summarize the comparison points from Section 3 of the source.
+    5.  Major Topics (3-Col Grid): Break down the three key considerations into digestible cards, making complex topics approachable.
+    6.  Conclusion: A final, impactful statement summarizing the evolution.
+    7.  Footer: Acknowledge the source material.
+
+    Visualization Selection Plan:
+    -   Timeline (Header): Goal=Change. Method=HTML/CSS. A styled flex container to show progression. Justification: Simple, clear, NO SVG.
+    -   AI Landscape (Intro): Goal=Compare. Method=Chart.js Donut Chart. To show the composition of the post-generative AI world. Justification: Visually engaging, shows parts of a whole, uses Canvas.
+    -   AI Agent Architecture (Section 1): Goal=Organize. Method=HTML/CSS Flowchart. Divs with borders and flexbox to represent the "Observe-Think-Act" loop. Justification: Clear process representation without SVG/Mermaid.
+    -   Agentic AI Architecture (Section 2): Goal=Organize. Method=HTML/CSS Flowchart. More complex layout with a central orchestrator and multiple agent nodes. Justification: Effectively shows a multi-entity system using only HTML/CSS.
+    -   Comparison (Section 3): Goal=Organize. Method=HTML Table. To present structured, comparative data. Justification: Most effective and clear way to display direct comparisons.
+    -   Key Topics (Section 4): Goal=Inform. Method=HTML/CSS Cards with Unicode Icons. Cards provide structure, icons add visual cues. Justification: Organizes distinct concepts clearly, NO SVG.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F2F2F2;
+            color: #0D0D0D;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        .flow-box {
+            border: 2px solid;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #A64F73;
+            margin: 0 0.5rem;
+        }
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background-color: #F2A341;
+            top: 1.25rem;
+            left: 50%;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+        .timeline-dot {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            font-weight: bold;
+            border: 4px solid #F2A341;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color: #0D0D0D;">AI Agents vs Agentic AI</h1>
+            <p class="text-lg md:text-xl text-gray-700">Comprendre l'Évolution de l'Intelligence Artificielle Agentique</p>
+        </header>
+
+        <section id="timeline" class="mb-16">
+            <h2 class="text-2xl font-bold text-center mb-8">Une Évolution Accélérée</h2>
+            <div class="w-full max-w-4xl mx-auto">
+                <div class="flex justify-between items-start">
+                    <div class="timeline-item">
+                        <div class="timeline-dot bg-gray-300">IA</div>
+                        <p class="mt-4 text-center font-semibold">IA Traditionnelle<br>(< 2022)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot" style="background-color: #A64F73;">G</div>
+                        <p class="mt-4 text-center font-semibold">IA Générative<br>(dès 2022)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot" style="background-color: #04BFBF;">A</div>
+                        <p class="mt-4 text-center font-semibold">AI Agents<br>(Post-Génératif)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot" style="background-color: #F2A341;">Ag</div>
+                        <p class="mt-4 text-center font-semibold">Agentic AI<br>(Post-Agents)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" class="mb-16">
+             <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4" style="color: #A64F73;">Le Contexte Post-IA Générative</h2>
+                        <p class="text-gray-700 leading-relaxed">
+                            L'essor des grands modèles de langage (LLMs) autour de 2022 a catalysé une transformation, passant des LLMs autonomes à des cadres plus autonomes et axés sur les tâches. Cette évolution a progressé à travers deux phases majeures : les **AI Agents** et l'**Agentic AI**. L'IA Générative sert de précurseur, fournissant la base cognitive pour ces systèmes plus avancés.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="evolutionChart"></canvas>
+                        </div>
+                         <p class="text-center text-sm text-gray-600 mt-2">Le paysage de l'IA post-générative.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            
+            <article id="ai-agents" class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col">
+                <h2 class="text-3xl font-bold mb-4" style="color: #04BFBF;">Section 1 : AI Agents</h2>
+                <p class="mb-6 text-gray-700">Entités logicielles autonomes conçues pour exécuter des tâches spécifiques dans des environnements délimités. Ce sont des systèmes modulaires principalement basés sur les LLMs.</p>
+                
+                <h3 class="font-bold text-xl mb-2" style="color: #04BFBF;">Caractéristiques Clés</h3>
+                <ul class="list-disc list-inside mb-6 space-y-2 text-gray-700">
+                    <li><span class="font-semibold">Autonomie :</span> Fonctionne avec une intervention humaine minimale après déploiement.</li>
+                    <li><span class="font-semibold">Spécificité :</span> Conçu pour des tâches étroites et bien définies.</li>
+                    <li><span class="font-semibold">Réactivité :</span> Interagit avec des entrées dynamiques et s'adapte via des boucles de feedback simples.</li>
+                </ul>
+
+                <h3 class="font-bold text-xl mb-4" style="color: #04BFBF;">Architecture Simplifiée : Boucle "Observer-Penser-Agir"</h3>
+                <div class="flex items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg mb-6">
+                    <div class="flow-box" style="border-color: #04BFBF;">Perception (Entrées)</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-box" style="border-color: #04BFBF;">Raisonnement (LLM)</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-box" style="border-color: #04BFBF;">Action (Outils/APIs)</div>
+                </div>
+                <p class="text-gray-600 text-sm mb-6">Cette architecture illustre comment un agent unique perçoit son environnement, utilise un LLM pour décider d'une action, puis exécute cette action à l'aide d'outils externes.</p>
+
+                <h3 class="font-bold text-xl mb-2" style="color: #04BFBF;">Exemples d'Applications</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Automatisation du support client</li>
+                    <li>Filtrage et priorisation d'emails</li>
+                    <li>Recommandation de contenu personnalisé</li>
+                </ul>
+            </article>
+
+            <article id="agentic-ai" class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col">
+                <h2 class="text-3xl font-bold mb-4" style="color: #F2A341;">Section 2 : Agentic AI</h2>
+                <p class="mb-6 text-gray-700">Systèmes complexes composés de multiples agents spécialisés qui collaborent pour atteindre des objectifs de haut niveau. Un changement de paradigme vers l'intelligence de système.</p>
+
+                <h3 class="font-bold text-xl mb-2" style="color: #F2A341;">Caractéristiques Clés</h3>
+                <ul class="list-disc list-inside mb-6 space-y-2 text-gray-700">
+                    <li><span class="font-semibold">Collaboration Multi-Agent :</span> Les agents interagissent de manière synergique.</li>
+                    <li><span class="font-semibold">Décomposition des Tâches :</span> Un objectif complexe est découpé en sous-tâches gérables.</li>
+                    <li><span class="font-semibold">Mémoire Persistante :</span> Conserve le contexte sur de multiples interactions.</li>
+                </ul>
+
+                <h3 class="font-bold text-xl mb-4" style="color: #F2A341;">Architecture Simplifiée : Écosystème Collaboratif</h3>
+                <div class="p-4 border-2 border-dashed border-gray-300 rounded-lg mb-6 text-sm">
+                    <div class="flow-box w-full mb-2" style="border-color: #F2A341; background-color: #FEF6E9;">Orchestration (Meta-Agent)</div>
+                    <div class="flex justify-center my-2"><div class="text-3xl" style="color: #A64F73;">↓</div></div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flow-box" style="border-color: #F2A341;">Agent Spécialisé 1</div>
+                        <div class="flow-box" style="border-color: #F2A341;">Agent Spécialisé 2</div>
+                        <div class="flow-box col-span-2" style="border-color: #F2A341;">Mémoire Persistante Partagée</div>
+                    </div>
+                </div>
+                 <p class="text-gray-600 text-sm mb-6">Ici, un méta-agent coordonne plusieurs agents spécialisés qui peuvent communiquer et partager des informations via une mémoire commune pour résoudre des problèmes complexes.</p>
+
+                <h3 class="font-bold text-xl mb-2" style="color: #F2A341;">Exemples d'Applications</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Assistants de recherche multi-agents</li>
+                    <li>Coordination de robotique intelligente (essaims de drones)</li>
+                    <li>Automatisation de flux de travail adaptatifs</li>
+                </ul>
+            </article>
+
+        </main>
+
+        <section id="comparison" class="mb-16 bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Points Communs et Différences Clés</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-full text-left">
+                    <thead>
+                        <tr class="border-b-2 border-gray-300">
+                            <th class="p-4 text-xl font-bold">Caractéristique</th>
+                            <th class="p-4 text-xl font-bold" style="color: #04BFBF;">AI Agent</th>
+                            <th class="p-4 text-xl font-bold" style="color: #F2A341;">Agentic AI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-4 font-semibold">Fondation</td>
+                            <td class="p-4" colspan="2">Utilise des LLMs/LIMs comme moteur de raisonnement</td>
+                        </tr>
+                         <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="p-4 font-semibold">Objectif</td>
+                            <td class="p-4" colspan="2">Conçu pour atteindre des buts spécifiques</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-4 font-semibold">Composition</td>
+                            <td class="p-4">Entité unique</td>
+                            <td class="p-4">Système multi-agents collaboratifs</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="p-4 font-semibold">Portée</td>
+                            <td class="p-4">Tâches spécifiques et délimitées</td>
+                            <td class="p-4">Objectifs complexes, flux multi-étapes</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-4 font-semibold">Collaboration</td>
+                            <td class="p-4">Opère indépendamment</td>
+                            <td class="p-4">Collaboration inter-agents essentielle</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="p-4 font-semibold">Mémoire</td>
+                            <td class="p-4">Limitée, contexte court</td>
+                            <td class="p-4">Persistante et partagée</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold">Orchestration</td>
+                            <td class="p-4">Aucune</td>
+                            <td class="p-4">Couche d'orchestration pour gérer les agents</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="major-topics" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Trois Sujets Majeurs à Considérer</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-5xl mb-4">🏛️</div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: #A64F73;">Architecture & Coordination</h3>
+                    <p class="text-gray-700">La distinction fondamentale réside dans la structure : entité unique vs. écosystème multi-agents. L'orchestration est la clé de voûte des systèmes Agentic AI.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-5xl mb-4">🧠</div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: #A64F73;">Capacités & Raisonnement</h3>
+                    <p class="text-gray-700">Les agents héritent des limites des LLMs (ex: hallucinations). L'Agentic AI vise à surmonter ces défis avec un raisonnement plus avancé et une mémoire persistante.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-5xl mb-4">🛡️</div>
+                    <h3 class="text-2xl font-bold mb-3" style="color: #A64F73;">Confiance & Gouvernance</h3>
+                    <p class="text-gray-700">Avec une autonomie croissante, les questions de responsabilité, de transparence et de sécurité deviennent primordiales et nécessitent des mécanismes de surveillance robustes.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center pt-8 border-t border-gray-300">
+            <h2 class="text-2xl font-bold mb-4">Conclusion : Vers des Systèmes Intelligents Plus Complexes</h2>
+            <p class="max-w-3xl mx-auto text-gray-700 mb-6">
+                L'évolution des AI Agents vers l'Agentic AI marque un passage de l'exécution de tâches réactives à des flux de travail orchestrés et collaboratifs. Comprendre ces distinctions est fondamental pour le développement futur de systèmes agentiques fiables, évolutifs et dignes de confiance.
+            </p>
+            <p class="text-sm text-gray-500">
+                Basé sur l'article "AI Agents vs. Agentic AI: A Conceptual Taxonomy, Applications and Challenges" (arXiv:2505.10468v4).
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function wrapLabels(label, maxWidth) {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            }
+
+            const mandatoryTooltipPlugin = {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            if (!item) return '';
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        }
+                    }
+                }
+            };
+
+            const ctx = document.getElementById('evolutionChart').getContext('2d');
+            const evolutionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['IA Générative (Base)', 'AI Agents', 'Agentic AI'],
+                    datasets: [{
+                        label: 'Paysage de l\'IA',
+                        data: [40, 35, 25],
+                        backgroundColor: [
+                            '#A64F73',
+                            '#04BFBF',
+                            '#F2A341'
+                        ],
+                        borderColor: '#F2F2F2',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        ...mandatoryTooltipPlugin
+                    },
+                    cutout: '60%'
+                }
+            });
+        });
+    </script>
+</body>
+</html>
