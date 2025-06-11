@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : Cartographie de la Conformité Numérique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .flowchart-arrow {
+            position: relative;
+            width: 100%;
+            height: 2px;
+            background-color: #90cdf4;
+            margin: 2rem 0;
+        }
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: -5px;
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 10px solid #90cdf4;
+        }
+        .pyramid-level {
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#00488d] mb-2">Cartographie de la Conformité Numérique</h1>
+            <p class="text-lg text-gray-600">Données Personnelles, IA et Responsabilité : un écosystème intégré</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="fondations">
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#007bff]">Niveau 1 : Le Socle Légal et Réglementaire</h2>
+                <div class="text-center mb-8 max-w-3xl mx-auto">
+                    <p class="text-gray-700">Toute stratégie de conformité repose sur des textes fondateurs qui définissent les grands principes. En Europe, ce socle combine des lois nationales historiques avec des règlements supranationaux qui harmonisent le paysage juridique pour tous les États membres.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#00488d]">
+                        <h3 class="font-bold text-xl mb-2 text-[#00488d]">Loi "Informatique et Libertés"</h3>
+                        <p class="text-gray-600 text-sm mb-4">France, 1978</p>
+                        <p>Pierre angulaire historique, elle a posé les bases de la protection des données personnelles en France, affirmant que l'informatique doit être au service du citoyen.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#007bff]">
+                        <h3 class="font-bold text-xl mb-2 text-[#007bff]">RGPD (Règlement Général sur la Protection des Données)</h3>
+                        <p class="text-gray-600 text-sm mb-4">UE, 2018</p>
+                        <p>Le cadre unifié et central de la protection des données. Il impose des principes stricts (finalité, minimisation) et confère des droits forts aux individus.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#00a4ef]">
+                        <h3 class="font-bold text-xl mb-2 text-[#00a4ef]">AI Act (Loi sur l'IA)</h3>
+                         <p class="text-gray-600 text-sm mb-4">UE, 2024</p>
+                        <p>Premier règlement au monde sur l'IA, il adopte une approche basée sur les risques, interdisant certaines pratiques et imposant des exigences lourdes aux systèmes à haut risque.</p>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#54c6eb]">
+                        <h3 class="font-bold text-xl mb-2 text-[#54c6eb]">Data Governance & Data Act</h3>
+                         <p class="text-gray-600 text-sm mb-4">UE, 2023-2025</p>
+                        <p>Ces textes créent un marché unique des données en facilitant le partage (DGA) et en clarifiant l'accès et l'utilisation des données générées par les objets connectés (Data Act).</p>
+                    </div>
+                </div>
+            </section>
+            
+            <hr class="my-12 border-gray-300">
+
+            <section id="risques">
+                 <h2 class="text-3xl font-bold text-center mb-8 text-[#007bff]">Niveau 2 : L'Approche par les Risques de l'IA Act</h2>
+                <div class="text-center mb-8 max-w-3xl mx-auto">
+                    <p class="text-gray-700">L'AI Act ne traite pas toutes les intelligences artificielles de la même manière. Il instaure une pyramide des risques pour moduler les obligations légales en fonction de l'impact potentiel des systèmes sur les droits fondamentaux, la sécurité et la société.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 md:col-span-2">
+                    <div class="flex flex-col items-center">
+                         <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 text-center text-white p-4 mb-[-1px] pyramid-level" style="background-color: #dc2626;">
+                            <h4 class="font-bold">Risque Inacceptable</h4>
+                            <p class="text-sm">(Interdit)</p>
+                        </div>
+                        <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 text-center text-white p-4 mb-[-1px] pyramid-level" style="background-color: #f97316;">
+                            <h4 class="font-bold">Haut Risque</h4>
+                            <p class="text-sm">(Exigences Strictes)</p>
+                        </div>
+                         <div class="w-full sm:w-5/6 md:w-5/6 lg:w-2/3 text-center p-4 mb-[-1px] pyramid-level" style="background-color: #facc15; color: #444;">
+                            <h4 class="font-bold">Risque Limité</h4>
+                            <p class="text-sm">(Obligations de Transparence)</p>
+                        </div>
+                         <div class="w-full text-center p-4 pyramid-level" style="background-color: #4ade80; color: #444;">
+                            <h4 class="font-bold">Risque Minimal ou Nul</h4>
+                            <p class="text-sm">(Peu ou pas d'obligations)</p>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-center text-gray-600">Cette classification détermine le niveau de documentation, de surveillance humaine, de robustesse et de transparence requis pour la mise sur le marché.</p>
+                </div>
+            </section>
+
+            <hr class="my-12 border-gray-300">
+
+            <section id="transferts">
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#007bff]">Niveau 3 : La Gestion des Transferts Internationaux de Données</h2>
+                <div class="text-center mb-8 max-w-3xl mx-auto">
+                    <p class="text-gray-700">Transférer des données hors de l'UE est une opération encadrée. Le RGPD exige que le niveau de protection "voyage" avec les données. Plusieurs mécanismes existent, chacun avec ses propres contraintes, notamment depuis l'arrêt Schrems II qui impose une vigilance accrue.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                        <div class="flowchart-node border-green-500 bg-green-50">
+                            <h4 class="font-bold text-green-700">Voie 1 : Décision d'Adéquation</h4>
+                            <p class="text-sm text-gray-600 mt-2">Le plus simple. La Commission Européenne valide la protection d'un pays. Ex: EU-U.S. Data Privacy Framework.</p>
+                        </div>
+                        <div class="flowchart-node border-yellow-500 bg-yellow-50">
+                            <h4 class="font-bold text-yellow-700">Voie 2 : Garanties Appropriées</h4>
+                             <p class="text-sm text-gray-600 mt-2">Le plus courant. Utilisation de contrats types (CCT/SCC) ou de règles internes (BCR). Nécessite une évaluation d'impact (TIA).</p>
+                        </div>
+                        <div class="flowchart-node border-red-500 bg-red-50">
+                             <h4 class="font-bold text-red-700">Voie 3 : Dérogations</h4>
+                             <p class="text-sm text-gray-600 mt-2">Pour des cas spécifiques et non répétitifs (consentement explicite, contrat, etc.). Solution d'exception.</p>
+                        </div>
+                    </div>
+                     <div class="flex justify-center items-center my-6 flex-col md:flex-row">
+                        <div class="text-center p-4 border-2 border-dashed border-orange-400 rounded-lg bg-orange-50 max-w-md">
+                            <h4 class="font-bold text-orange-600">Point de vigilance : Le TIA</h4>
+                            <p class="text-sm text-gray-700 mt-1">Le Transfer Impact Assessment est OBLIGATOIRE lors de l'utilisation des CCT/BCR. Il faut évaluer si la loi du pays de destination ne neutralise pas les protections contractuelles.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <hr class="my-12 border-gray-300">
+
+            <section id="cloud">
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#007bff]">Niveau 4 : Le Défi du Cloud et les Lois Extraterritoriales</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                         <h3 class="text-2xl font-bold mb-4 text-[#00488d]">Risques vs. Protections Contractuelles</h3>
+                         <p class="text-gray-700 mb-6">L'utilisation de services cloud, notamment américains, expose à des lois extraterritoriales comme le Cloud Act ou FISA 702. Ces lois permettent aux autorités américaines d'accéder à des données, même stockées en Europe. Face à cela, des protections contractuelles et techniques sont mises en place, mais leur efficacité juridique est débattue.</p>
+                        <div class="chart-container">
+                            <canvas id="cloudRadarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-bold mb-4 text-[#00488d]">Anatomie des Outils de Conformité</h3>
+                        <p class="text-gray-700 mb-6">Chaque outil a un rôle précis. Le DPA est le contrat de base, l'AIPD évalue les risques en amont, et les initiatives de "Data Boundary" sont des mesures techniques qui visent à limiter les transferts de données.</p>
+                         <div class="space-y-4">
+                            <div class="p-4 rounded-lg bg-blue-50 border-l-4 border-blue-500">
+                                <h4 class="font-bold text-blue-800">DPA (Data Processing Agreement)</h4>
+                                <p class="text-sm text-gray-700">Contrat obligatoire (RGPD Art. 28) entre vous et votre fournisseur cloud. Il définit les rôles, les instructions et les obligations de sécurité.</p>
+                            </div>
+                             <div class="p-4 rounded-lg bg-orange-50 border-l-4 border-orange-500">
+                                <h4 class="font-bold text-orange-800">AIPD (Analyse d'Impact)</h4>
+                                <p class="text-sm text-gray-700">Processus obligatoire pour les traitements à haut risque. Il analyse l'impact sur la vie privée et définit les mesures pour réduire ces risques.</p>
+                            </div>
+                             <div class="p-4 rounded-lg bg-green-50 border-l-4 border-green-500">
+                                <h4 class="font-bold text-green-800">EU Data Boundary</h4>
+                                <p class="text-sm text-gray-700">Engagement technique d'un fournisseur à stocker et traiter les données en UE. Réduit l'exposition mais ne garantit pas la souveraineté juridique complète.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+
+        <footer class="text-center mt-16 py-8 border-t border-gray-200">
+            <h3 class="text-2xl font-bold text-[#00488d] mb-4">Une Conformité Intégrée</h3>
+            <p class="text-gray-600 max-w-4xl mx-auto">La protection des données et la gestion de la responsabilité ne reposent pas sur un seul outil, mais sur l'articulation intelligente de plusieurs couches : des lois fondatrices, des règles de gouvernance, des mécanismes de transfert sécurisés et des dispositifs technico-contractuels robustes. Chaque brique renforce les autres pour créer un écosystème de confiance.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabels(label, maxWidth) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    if (currentLine.length > 0) {
+                        currentLine += ' ' + word;
+                    } else {
+                        currentLine = word;
+                    }
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const colors = {
+            blue1: '#00488d',
+            blue2: '#007bff',
+            blue3: '#00a4ef',
+            blue4: '#54c6eb',
+            blue5: '#a7d7f9',
+            risk: '#f44336',
+            protection: '#4caf50'
+        };
+
+        const cloudRadarCtx = document.getElementById('cloudRadarChart').getContext('2d');
+        new Chart(cloudRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Souveraineté Juridique', 
+                    ['Isolation Technique', '(Data Residency)'], 
+                    'Garantie Contractuelle', 
+                    'Transparence',
+                    ['Exposition au Risque', 'Extraterritorial']
+                ].map(l => Array.isArray(l) ? l : wrapLabels(l, 18)),
+                datasets: [
+                    {
+                        label: 'Cloud Act / FISA 702',
+                        data: [1, 0, 0, 1, 10],
+                        borderColor: colors.risk,
+                        backgroundColor: 'rgba(244, 67, 54, 0.2)',
+                        pointBackgroundColor: colors.risk,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'DPA Standard',
+                        data: [4, 2, 8, 7, 6],
+                        borderColor: colors.blue2,
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                        pointBackgroundColor: colors.blue2,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Initiative "EU Data Boundary"',
+                        data: [5, 9, 7, 7, 4],
+                        borderColor: colors.protection,
+                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                        pointBackgroundColor: colors.protection,
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                ...commonTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 11
+                            },
+                            color: '#333'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        ticks: {
+                           display: false,
+                           stepSize: 2
+                        }
+                    }
+                },
+                plugins: {
+                    ...commonTooltipOptions.plugins,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Analyse comparative des risques et protections Cloud',
+                        padding: {
+                            top: 10,
+                            bottom: 20
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
