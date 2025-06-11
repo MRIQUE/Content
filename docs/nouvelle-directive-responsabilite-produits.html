@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : La Nouvelle Directive PLD et son Impact sur l'IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    PLAN DE L'INFOGRAPHIE
+    1.  Introduction: Titre et chapô.
+    2.  Frise temporelle: Visualisation des étapes clés de la directive.
+    3.  Principe fondamental: Mise en exergue de la responsabilité stricte.
+    4.  Piliers de la réforme: Une grille présentant les 3 changements majeurs (Champ d'application, Acteurs, Définitions).
+    5.  Interaction réglementaire: Un diagramme HTML/CSS illustrant le lien avec l'AI Act.
+    6.  Impacts pour les entreprises: Visualisation des coûts, défis et opportunités avec des graphiques Chart.js.
+    7.  Conclusion: Résumé des 3 points clés à retenir.
+
+    CHOIX DES VISUALISATIONS (Confirmation SANS SVG / SANS MERMAID JS)
+    - Frise temporelle: Objectif: Montrer le changement. Méthode: HTML/CSS structuré avec Tailwind. SANS SVG.
+    - Diagramme de flux (Lien AI Act): Objectif: Organiser. Méthode: Divs HTML stylisées avec Tailwind pour créer des boîtes et des flèches (caractère Unicode →). SANS SVG / SANS MERMAID JS.
+    - Graphique des coûts: Objectif: Comparer. Méthode: Graphique à barres Chart.js (Canvas). Justification: Idéal pour comparer des catégories distinctes de coûts. SANS SVG.
+    - Graphique Défis vs Opportunités: Objectif: Comparer (Composition). Méthode: Graphique en anneau (Donut) Chart.js (Canvas). Justification: Parfait pour montrer la proportion de chaque concept. SANS SVG.
+    - Icônes: Objectif: Informer/Illustrer. Méthode: Caractères Unicode (Emojis). SANS SVG.
+
+    PALETTE DE COULEURS CHOISIE: "Brilliant Blues"
+    Primaire: #005f73, #0a9396
+    Accents: #ee9b00, #ca6702
+    Texte: #001219
+    Fond: #f8f9fa
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #001219;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            max-height: 400px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .section-title {
+            font-weight: 900;
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            color: #005f73;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            color: #495057;
+            margin-bottom: 3rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0a9396;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#005f73] to-[#0a9396]">La Nouvelle Directive sur la Responsabilité des Produits (PLD)</h1>
+            <p class="mt-4 text-lg md:text-xl font-semibold text-[#ca6702]">Un guide visuel sur l'impact pour les entreprises utilisant l'Intelligence Artificielle</p>
+        </header>
+        
+        <section id="timeline" class="mb-20">
+            <h2 class="section-title">Une Modernisation Législative</h2>
+            <p class="section-subtitle">La directive actuelle, datant de 1985, est remplacée pour s'adapter à l'ère numérique, notamment à l'essor des logiciels et de l'IA. Voici les étapes clés de cette transition majeure.</p>
+            <div class="relative w-full px-4">
+                <div class="absolute h-full border-l-4 border-[#94d2bd] left-1/2 -translate-x-1/2"></div>
+                <div class="space-y-12">
+                    <div class="flex items-center w-full">
+                        <div class="w-1/2 text-right pr-8"><div class="font-bold text-xl text-[#005f73]">Directive de 1985</div><p class="text-gray-600">Le cadre originel de la responsabilité des produits.</p></div>
+                        <div class="w-12 h-12 rounded-full bg-[#94d2bd] flex items-center justify-center text-white text-xl font-bold shadow-lg z-10">🏛️</div>
+                        <div class="w-1/2"></div>
+                    </div>
+                    <div class="flex items-center w-full">
+                        <div class="w-1/2"></div>
+                        <div class="w-12 h-12 rounded-full bg-[#0a9396] flex items-center justify-center text-white text-xl font-bold shadow-lg z-10">📅</div>
+                        <div class="w-1/2 text-left pl-8"><div class="font-bold text-xl text-[#0a9396]">Mars 2024</div><p class="text-gray-600">Adoption de la version révisée par le Parlement européen.</p></div>
+                    </div>
+                    <div class="flex items-center w-full">
+                        <div class="w-1/2 text-right pr-8"><div class="font-bold text-xl text-[#ca6702]">Prochainement</div><p class="text-gray-600">Approbation finale attendue par le Conseil européen.</p></div>
+                        <div class="w-12 h-12 rounded-full bg-[#ee9b00] flex items-center justify-center text-white text-xl font-bold shadow-lg z-10">⏳</div>
+                        <div class="w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strict-liability" class="my-20 p-8 bg-gradient-to-br from-[#005f73] to-[#0a9396] rounded-xl shadow-2xl text-white">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Le Principe Fondamental : La Responsabilité Stricte (sans faute)</h2>
+            <p class="text-center text-lg max-w-3xl mx-auto mb-6 text-[#e9d8a6]">
+                C'est le pilier de la directive. Une entreprise peut être tenue responsable des dommages causés par son produit, même si elle n'a commis aucune faute. La victime doit simplement prouver trois éléments :
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mt-6">
+                <div class="text-center">
+                    <div class="text-6xl font-black text-white">1</div>
+                    <div class="mt-2 font-semibold text-[#94d2bd]">Le Défaut</div>
+                </div>
+                <div class="text-5xl font-thin text-[#94d2bd] hidden md:block">+</div>
+                <div class="text-center">
+                    <div class="text-6xl font-black text-white">2</div>
+                    <div class="mt-2 font-semibold text-[#94d2bd]">Le Dommage</div>
+                </div>
+                 <div class="text-5xl font-thin text-[#94d2bd] hidden md:block">+</div>
+                <div class="text-center">
+                    <div class="text-6xl font-black text-white">3</div>
+                    <div class="mt-2 font-semibold text-[#94d2bd]">Le Lien de Causalité</div>
+                </div>
+            </div>
+            <p class="text-center mt-8 font-bold text-xl bg-[#ee9b00] text-[#001219] rounded-md p-3 max-w-xl mx-auto">
+                💡 Ce principe s'applique désormais pleinement aux logiciels et à l'Intelligence Artificielle.
+            </p>
+        </section>
+
+        <section id="pillars" class="my-20">
+            <h2 class="section-title">Les Piliers de la Réforme</h2>
+            <p class="section-subtitle">La directive modernise la législation en élargissant trois domaines critiques pour s'adapter aux produits numériques complexes. Ces changements ont des conséquences directes sur toute la chaîne de valeur de l'IA.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <h3 class="card-title">🤖 1. Champ d'application élargi : L'IA est un "produit"</h3>
+                    <p class="text-gray-700">La directive considère explicitement les logiciels, y compris les systèmes d'IA autonomes (ex: IA générative) et intégrés (ex: voitures connectées), comme des "produits". Cela inclut le produit initial, mais aussi ses mises à jour et dépendances logicielles.</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">🌍 2. Acteurs responsables élargis</h3>
+                    <p class="text-gray-700">La responsabilité n'incombe plus seulement au fabricant. Elle s'étend aux importateurs, distributeurs, et même aux fournisseurs de services (ex: cloud) si leur service est essentiel au fonctionnement du produit défectueux. Les entreprises non-européennes doivent nommer un représentant dans l'UE.</p>
+                </div>
+                 <div class="card md:col-span-2 lg:col-span-1">
+                    <h3 class="card-title">⚖️ 3. Définitions élargies du "défaut" et du "dommage"</h3>
+                    <p class="text-gray-700">Un **défaut** peut être une faille de cybersécurité, une mise à jour inadéquate, ou une décision erronée d'un algorithme. Le **dommage** couvert inclut les préjudices matériels, physiques, mais aussi immatériels comme les pertes de données ou les atteintes psychologiques significatives.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-act-link" class="my-20">
+            <h2 class="section-title">Transparence et Lien avec l'AI Act</h2>
+            <p class="section-subtitle">La PLD ne fonctionne pas en vase clos. Elle est étroitement liée à l'AI Act, créant un puissant mécanisme de protection pour les consommateurs. Le non-respect de l'AI Act peut directement entraîner une responsabilité sous la PLD.</p>
+            <div class="card p-6 md:p-8">
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="border-2 border-[#bb3e03] p-4 rounded-lg">
+                        <h4 class="font-bold text-[#bb3e03]">Non-respect de l'AI Act</h4>
+                        <p class="text-sm">(ex: pour un système à haut risque)</p>
+                    </div>
+                    <div class="text-4xl font-bold text-[#0a9396] transform md:-rotate-0 rotate-90">→</div>
+                    <div class="border-2 border-[#0a9396] p-4 rounded-lg bg-[#0a9396] text-white">
+                        <h4 class="font-bold">Présomption de Défaut</h4>
+                        <p class="text-sm">(selon la PLD)</p>
+                    </div>
+                    <div class="text-4xl font-bold text-[#0a9396] transform md:-rotate-0 rotate-90">→</div>
+                    <div class="border-2 border-[#005f73] p-4 rounded-lg">
+                        <h4 class="font-bold text-[#005f73]">Réclamation simplifiée</h4>
+                        <p class="text-sm">(pour la victime)</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-center text-lg font-semibold text-gray-800">
+                    <span class="font-bold text-[#ca6702]">Point d'attention :</span> Une documentation exhaustive du cycle de vie de l'IA (conception, tests, données) devient une protection juridique indispensable.
+                </p>
+            </div>
+        </section>
+
+        <section id="implications" class="my-20">
+            <h2 class="section-title">Implications pour les Entreprises</h2>
+            <p class="section-subtitle">La nouvelle directive crée un environnement plus sûr pour les consommateurs, mais impose des contraintes et des coûts supplémentaires aux entreprises. L'impact se ressent sur les plans financier, opérationnel et stratégique.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card p-6">
+                    <h3 class="card-title text-center">📈 Hausse des Coûts de Conformité</h3>
+                    <p class="text-center text-gray-600 mb-4">Les entreprises doivent investir davantage dans la prévention des risques pour couvrir leurs nouvelles responsabilités.</p>
+                    <div class="chart-container">
+                        <canvas id="costsChart"></canvas>
+                    </div>
+                </div>
+                <div class="card p-6">
+                    <h3 class="card-title text-center">🤔 Défis vs. Opportunités</h3>
+                     <p class="text-center text-gray-600 mb-4">Si la réglementation présente des défis, elle ouvre aussi la voie à des avantages concurrentiels pour les acteurs les plus vertueux.</p>
+                    <div class="chart-container">
+                        <canvas id="swotChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="my-20 text-center">
+            <h2 class="section-title">Conclusion : 3 Piliers à Retenir</h2>
+            <p class="section-subtitle">Pour naviguer dans ce nouvel environnement réglementaire, les entreprises doivent intégrer trois principes fondamentaux dans leur stratégie.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6">
+                    <div class="text-5xl mb-4">1.</div>
+                    <h3 class="text-xl font-bold text-[#005f73] mb-2">IA = Produit</h3>
+                    <p class="text-gray-700">Traitez vos logiciels et systèmes d'IA avec la même rigueur de sécurité qu'un produit physique.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-5xl mb-4">2.</div>
+                    <h3 class="text-xl font-bold text-[#0a9396] mb-2">Transparence Radicale</h3>
+                    <p class="text-gray-700">Documentez tout. L'incapacité à expliquer le fonctionnement de votre IA est un risque juridique majeur.</p>
+                </div>
+                <div class="p-6">
+                     <div class="text-5xl mb-4">3.</div>
+                    <h3 class="text-xl font-bold text-[#ca6702] mb-2">Responsabilité Partagée</h3>
+                    <p class="text-gray-700">Assurez-vous que tous les acteurs de votre chaîne d'approvisionnement sont conformes.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center p-6 bg-gray-800 text-gray-400 mt-12">
+        <p>Cette infographie est une synthèse à but pédagogique et ne constitue pas un conseil juridique.</p>
+        <p>&copy; 2024. Données basées sur la proposition de Directive PLD révisée.</p>
+    </footer>
+
+    <script>
+        function wrapLabel(str, max_width) {
+            const words = str.split(' ');
+            let lines = [];
+            let current_line = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((current_line + ' ' + words[i]).length > max_width) {
+                    lines.push(current_line);
+                    current_line = words[i];
+                } else {
+                    current_line += ' ' + words[i];
+                }
+            }
+            lines.push(current_line);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                         color: '#001219',
+                         font: {
+                            weight: '600'
+                         }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#001219',
+                    titleFont: { size: 16, weight: 'bold' },
+                    bodyFont: { size: 14 },
+                    padding: 10,
+                    cornerRadius: 5
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#495057', font: { weight: 'bold' } },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: '#495057' },
+                    grid: { color: '#dee2e6' }
+                }
+            }
+        };
+
+        const costsCtx = document.getElementById('costsChart').getContext('2d');
+        new Chart(costsCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Tests et validation rigoureux', 
+                    'Mesures de cybersécurité', 
+                    'Assurances de responsabilité', 
+                    wrapLabel('Documentation et conformité', 20)
+                ],
+                datasets: [{
+                    label: 'Investissement Requis',
+                    data: [85, 90, 75, 80],
+                    backgroundColor: ['#0a9396', '#94d2bd', '#ee9b00', '#ca6702'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                 scales: {
+                    x: {
+                        ticks: { color: '#495057' },
+                        grid: { color: '#dee2e6' }
+                    },
+                    y: {
+                        ticks: { color: '#495057', font: { weight: 'bold' } },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        const swotCtx = document.getElementById('swotChart').getContext('2d');
+        new Chart(swotCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Défis', 'Opportunités'],
+                datasets: [{
+                    label: 'Impact',
+                    data: [4, 3],
+                    backgroundColor: ['#ae2012', '#0a9396'],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                cutout: '60%',
+                scales: {
+                     x: { display: false },
+                     y: { display: false }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
