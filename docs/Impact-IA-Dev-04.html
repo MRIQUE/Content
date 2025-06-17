@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structurer le développement avec l’IA dans Cursor : la méthode AI Dev Tasks</title>
+    <!-- Importing Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for better typography and feel */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .prose code {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #1f2937; /* gray-800 */
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto max-w-4xl px-4 py-8 sm:py-12">
+        <article class="bg-white rounded-xl shadow-lg p-6 sm:p-10 prose prose-lg max-w-none">
+            
+            <!-- Header Section -->
+            <div class="text-center mb-8">
+                <p class="text-base font-semibold text-blue-600">Développement Assisté par IA</p>
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    Structurer le développement avec l’IA dans Cursor : la méthode AI Dev Tasks
+                </h1>
+                <p class="mt-6 text-xl leading-8 text-gray-600">
+                    Une approche structurée pour collaborer efficacement avec l'IA et éviter le chaos dans les projets de développement complexes.
+                </p>
+            </div>
+
+            <!-- Introduction -->
+            <p>Développer des fonctionnalités complexes avec l’aide de l’intelligence artificielle peut vite devenir chaotique. Trop souvent, une simple requête "génère-moi cette fonctionnalité" produit du code difficilement vérifiable, hors-sujet ou non maintenable. Pour répondre à ce problème, le projet open-source <a href="https://github.com/SnarkTank/ai-dev-tasks" target="_blank" class="text-blue-600 hover:text-blue-800 font-semibold">AI Dev Tasks</a> propose une approche structurée et progressive, conçue spécifiquement pour l’éditeur Cursor.</p>
+
+            <!-- Objective Section -->
+            <h2 class="mt-12 text-2xl font-bold tracking-tight text-gray-900">🎯 Objectif : reprendre le contrôle sur l’IA</h2>
+            <p>La démarche repose sur une série de fichiers <code>.mdc</code> (Markdown Command), chacun jouant un rôle précis dans un workflow de développement pas à pas. Plutôt que de tout demander à l’IA en une seule fois, chaque étape est guidée, contrôlée, et validée par l’humain.</p>
+
+            <!-- Process Steps Section -->
+            <h2 class="mt-12 text-2xl font-bold tracking-tight text-gray-900">🧭 Étapes du processus</h2>
+            <ol class="list-decimal pl-5 mt-4 space-y-6">
+                <li>
+                    <strong>Définir la fonctionnalité avec un PRD</strong>
+                    <p>Un <em>Product Requirement Document</em> (PRD) sert de point de départ : il décrit ce qui doit être fait, pour qui, et pourquoi. Il est généré dans Cursor grâce à la commande :<br><code>@create-prd.mdc</code><br>Vous fournissez la description de votre fonctionnalité et, si nécessaire, des fichiers de référence. L’IA crée un document clair, base de tout le processus à venir.</p>
+                </li>
+                <li>
+                    <strong>Générer une liste de tâches détaillée</strong>
+                    <p>Une fois le PRD prêt, vous demandez à l’IA de le transformer en plan d’action clair :<br><code>@MyFeature-PRD.md → @generate-tasks.mdc</code><br>Chaque fonctionnalité est ainsi découpée en tâches et sous-tâches concrètes, compréhensibles par l’humain comme par l’IA.</p>
+                </li>
+                <li>
+                    <strong>Faire traiter les tâches une par une</strong>
+                    <p>Le fichier <code>process-task-list.mdc</code> permet de piloter l’IA de manière séquentielle : une tâche à la fois, validation manuelle obligatoire avant de passer à la suivante. Cela évite les dérives fréquentes des IA génératives :<br><code>Please start on task 1.1 and use @process-task-list.mdc</code></p>
+                </li>
+                <li>
+                    <strong>Vérifier, corriger, valider</strong>
+                    <p>Vous êtes maître du processus : si le code généré est satisfaisant, répondez "yes", et l’IA passe à la tâche suivante. Sinon, vous corrigez ou demandez une modification, et l’IA recommence.</p>
+                </li>
+                <li>
+                    <strong>Visualiser l’avancement</strong>
+                    <p>La méthode fournit une représentation claire des tâches accomplies, ce qui facilite le suivi et la coordination si vous êtes plusieurs à utiliser le même PRD.</p>
+                </li>
+            </ol>
+
+            <!-- Key Files Section -->
+            <h2 class="mt-12 text-2xl font-bold tracking-tight text-gray-900">📦 Les fichiers clés</h2>
+            <ul class="list-disc pl-5 mt-4 space-y-2">
+                <li><code>create-prd.mdc</code> : génère le document de spécifications.</li>
+                <li><code>generate-tasks.mdc</code> : crée une to-do list détaillée à partir du PRD.</li>
+                <li><code>process-task-list.mdc</code> : gère l'exécution et la validation des tâches une à une.</li>
+            </ul>
+
+            <!-- Advantages Section -->
+            <h2 class="mt-12 text-2xl font-bold tracking-tight text-gray-900">✅ Avantages</h2>
+            <ul class="list-disc pl-5 mt-4 space-y-2">
+                <li><strong>Clarté :</strong> chaque étape est transparente, lisible et documentée.</li>
+                <li><strong>Fiabilité :</strong> validation continue, réduction des erreurs.</li>
+                <li><strong>Modularité :</strong> chaque fichier <code>.mdc</code> peut être adapté à votre style de développement.</li>
+                <li><strong>Collaboration :</strong> parfait pour travailler à plusieurs ou en pair programming avec une IA.</li>
+            </ul>
+
+            <!-- How to Adopt Section -->
+            <h2 class="mt-12 text-2xl font-bold tracking-tight text-gray-900">🔧 Comment l’adopter ?</h2>
+            <ol class="list-decimal pl-5 mt-4 space-y-2">
+                <li>Téléchargez les <code>.mdc</code> depuis le <a href="https://github.com/SnarkTank/ai-dev-tasks" target="_blank" class="text-blue-600 hover:text-blue-800 font-semibold">dépôt GitHub ai-dev-tasks</a>.</li>
+                <li>Placez-les dans un dossier accessible depuis Cursor.</li>
+                <li>Suivez les 5 étapes avec votre IA dans Cursor Agent.</li>
+                <li>Personnalisez les commandes si besoin.</li>
+            </ol>
+
+            <!-- To Go Further Section -->
+            <h2 class="mt-12 text-2xl font-bold tracking-tight text-gray-900">🎙️ Pour aller plus loin</h2>
+            <p>Une démonstration complète de cette méthode est disponible dans le podcast <em>How I AI</em> avec Claire Vo, montrant un cas d’usage réel du workflow dans Cursor.</p>
+            <p>AI Dev Tasks propose une approche pragmatique pour transformer une IA générative en un véritable assistant de développement, fiable, pilotable et intégré au cycle de vie logiciel.</p>
+
+        </article>
+    </div>
+
+</body>
+</html>
