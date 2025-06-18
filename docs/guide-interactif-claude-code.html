@@ -233,7 +233,7 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const targetId = e.currentTarget.geatAttribute('href');
+                    const targetId = e.currentTarget.getAttribute('href'); // Fixed typo here
                     setActiveSection(targetId);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
