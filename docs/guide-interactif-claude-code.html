@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Guide Interactif de Claude Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony Neutrals (Stone, Teal) -->
+    <!-- Application Structure Plan: An interactive guide with thematic sections navigated by a top bar and a central workflow diagram. This structure turns a linear article into an explorable, engaging tool, improving retention and usability by grouping related tips logically for a developer audience. The core is the interactive workflow diagram which provides an immediate mental model of the process. -->
+    <!-- Visualization & Content Choices: Report Info -> Goal -> Viz/Presentation Method -> Interaction -> Justification. 
+        - Overall Process -> Organize -> Interactive Flowchart (HTML/CSS) -> Click to navigate sections -> Provides a visual map of the entire workflow.
+        - Tips & Concepts -> Inform/Engage -> Themed Cards (HTML/CSS) with icons -> Hover for emphasis -> Breaks down information into digestible, visually distinct chunks.
+        - Strengths/Weaknesses -> Compare -> Radar Chart (Chart.js) -> Visual comparison -> Offers a quick, data-driven summary of Claude's capabilities as described in the report.
+        - This avoids a 'wall of text' and uses interaction to reinforce key concepts.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .nav-active { color: #0d9488; border-bottom-color: #0d9488; }
+        .nav-inactive { color: #57534e; border-bottom-color: transparent; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .flow-step { transition: all 0.3s ease; }
+        .flow-step.active { border-color: #14b8a6; background-color: #f0fdfa; }
+        .flow-connector { background-color: #d6d3d1; }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-teal-700">Le Guide Interactif de Claude Code</h1>
+            <p class="mt-4 text-lg text-stone-600">Transformez Claude en votre meilleur collègue développeur. Apprenez à le maîtriser grâce à ce guide inspiré des meilleures pratiques.</p>
+        </header>
+
+        <nav id="main-nav" class="mb-10 border-b border-stone-200">
+            <ul class="flex items-center justify-center flex-wrap gap-4 md:gap-8">
+                <li><a href="#introduction" class="nav-link block font-medium text-lg py-3 border-b-2 transition-colors duration-300">Introduction</a></li>
+                <li><a href="#preparation" class="nav-link block font-medium text-lg py-3 border-b-2 transition-colors duration-300">Préparation</a></li>
+                <li><a href="#processus" class="nav-link block font-medium text-lg py-3 border-b-2 transition-colors duration-300">Le Processus</a></li>
+                <li><a href="#bonnes-pratiques" class="nav-link block font-medium text-lg py-3 border-b-2 transition-colors duration-300">Bonnes Pratiques</a></li>
+                <li><a href="#limites" class="nav-link block font-medium text-lg py-3 border-b-2 transition-colors duration-300">Les Limites</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <!-- Section Introduction -->
+            <section id="introduction" class="content-section">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-4 text-teal-600">Un Workflow de Développement Réinventé</h2>
+                    <p class="text-stone-600 mb-6">
+                        Cet espace interactif synthétise les apprentissages clés pour collaborer efficacement avec Claude Code. L'objectif n'est pas de suivre un tutoriel, mais d'adopter un nouveau mode de pensée où l'IA devient un partenaire de "pair programming". Nous verrons comment le configurer, l'alimenter, le superviser et, surtout, quand lui faire confiance.
+                    </p>
+                    <p class="text-stone-600 mb-8">
+                        Le diagramme ci-dessous représente le workflow idéal. Chaque étape est cliquable et vous mènera aux conseils correspondants. Explorez-le pour comprendre comment chaque phase s'articule pour un résultat optimal.
+                    </p>
+                </div>
+                <!-- Interactive Workflow Diagram -->
+                <div id="workflow-diagram" class="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-2 flex-wrap mb-8">
+                    <div class="flow-step cursor-pointer text-center p-4 border-2 border-stone-300 rounded-lg w-48" data-target="processus">
+                        <span class="text-2xl">📋</span>
+                        <h3 class="font-bold mt-2">1. Planifier</h3>
+                    </div>
+                    <div class="w-1 h-8 md:w-12 md:h-1 flow-connector"></div>
+                    <div class="flow-step cursor-pointer text-center p-4 border-2 border-stone-300 rounded-lg w-48" data-target="processus">
+                        <span class="text-2xl">🧠</span>
+                        <h3 class="font-bold mt-2">2. Alimenter</h3>
+                    </div>
+                    <div class="w-1 h-8 md:w-12 md:h-1 flow-connector"></div>
+                    <div class="flow-step cursor-pointer text-center p-4 border-2 border-stone-300 rounded-lg w-48" data-target="processus">
+                        <span class="text-2xl">⚙️</span>
+                        <h3 class="font-bold mt-2">3. Implémenter</h3>
+                    </div>
+                    <div class="w-1 h-8 md:w-12 md:h-1 flow-connector"></div>
+                    <div class="flow-step cursor-pointer text-center p-4 border-2 border-stone-300 rounded-lg w-48" data-target="bonnes-pratiques">
+                        <span class="text-2xl">🔍</span>
+                        <h3 class="font-bold mt-2">4. Valider</h3>
+                    </div>
+                    <div class="w-1 h-8 md:w-12 md:h-1 flow-connector"></div>
+                     <div class="flow-step cursor-pointer text-center p-4 border-2 border-stone-300 rounded-lg w-48" data-target="preparation">
+                        <span class="text-2xl">🧑‍🏫</span>
+                        <h3 class="font-bold mt-2">5. Former</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Préparation -->
+            <section id="preparation" class="content-section">
+                 <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-teal-600">Préparation et Formation Continue</h2>
+                    <p class="text-stone-600">Avant de commencer à coder, une bonne configuration est essentielle pour tirer le meilleur parti de Claude. C'est aussi un outil qui apprend : vos corrections l'améliorent au fil du temps. Cette section couvre les fondamentaux pour bien démarrer et maintenir l'efficacité de votre assistant.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-teal-500">
+                        <h3 class="font-bold text-xl mb-3">🚀 Choisir le bon modèle</h3>
+                        <p>Utilisez toujours la version **Opus**. Elle est plus performante que la version par défaut (Sonnet). C'est un investissement qui en vaut la peine pour éviter des résultats décevants.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-teal-500">
+                        <h3 class="font-bold text-xl mb-3">🛠️ Utiliser les extensions</h3>
+                        <p>L'extension pour VSCode/Cursor est un must. Le raccourci `CMD+Esc` et la lecture automatique du contexte de vos fichiers changent la donne et fluidifient l'interaction.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-500">
+                        <h3 class="font-bold text-xl mb-3">✍️ Corriger pour Former</h3>
+                        <p>Quand Claude se trompe, préfixez votre correction avec `#`. Cette instruction est sauvegardée dans sa mémoire (`CLAUDE.md`) pour les futures sessions. Vous le formez activement.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-500">
+                        <h3 class="font-bold text-xl mb-3">💾 Versionner la Mémoire</h3>
+                        <p>Intégrez le fichier `CLAUDE.md` à votre contrôle de version (Git). Cela permet de partager la "connaissance" de Claude avec toute l'équipe et de la pérenniser.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Le Processus -->
+            <section id="processus" class="content-section">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-teal-600">Le Processus de Développement avec Claude</h2>
+                    <p class="text-stone-600">Interagir avec Claude s'apparente à un dialogue structuré. Il ne s'agit pas de lui donner un ordre et d'attendre, mais de le guider à travers un processus de planification, de contextualisation et de supervision. Voici comment orchestrer cette collaboration pour les tâches quotidiennes.</p>
+                </div>
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                        <h3 class="font-bold text-xl border-b pb-2">Étape 1 : La Planification</h3>
+                        <p>Pour toute tâche complexe, utilisez le **mode "plan"** (`Shift+Tab Shift+Tab`). Cela aide Claude à structurer sa pensée et vous force à clarifier votre demande. C'est un gage de qualité.</p>
+                        <div class="bg-rose-50 border-l-4 border-rose-400 p-4 rounded-r-lg">
+                            <p><strong class="text-rose-700">Piège à éviter :</strong> La sur-ingénierie. Rappelez-lui de "garder les choses aussi simples que possible". Claude adore complexifier !</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                         <h3 class="font-bold text-xl border-b pb-2">Étape 2 : L'Alimentation en Contexte</h3>
+                         <p>Claude a besoin de matière. Pensez-le comme un ticket Jira pour un développeur junior : soyez précis et complet.</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-700">
+                            <li>Collez des liens, des images (`Ctrl+V`).</li>
+                            <li>Guidez-le vers les bons fichiers avec `@`.</li>
+                            <li>Donnez-lui accès à Git/GitHub pour gérer les PRs et les conflits.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md space-y-4 lg:col-span-2">
+                        <h3 class="font-bold text-xl border-b pb-2">Étape 3 : L'Implémentation Supervisée</h3>
+                        <p>Une fois le plan validé, lancez l'implémentation. N'hésitez pas à l'interrompre (`Esc`) s'il dérive. Votre rôle est de rester le pilote.</p>
+                        <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                             <p><strong class="text-amber-700">Le "Rabbit Hole" :</strong> Si après 3-4 essais vous n'avancez pas, **arrêtez tout**. Abandonnez la tâche avec l'IA, réinitialisez le contexte et changez d'approche. S'acharner est la pire des stratégies.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Bonnes Pratiques -->
+            <section id="bonnes-pratiques" class="content-section">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-teal-600">Bonnes Pratiques et Validation du Code</h2>
+                    <p class="text-stone-600">Obtenir du code n'est que la moitié du travail. Il faut s'assurer de sa qualité. Cette section détaille les techniques de validation et les "sorts magiques" pour pousser Claude à donner le meilleur de lui-même. La confiance n'exclut pas le contrôle.</p>
+                </div>
+                 <div class="grid md:grid-cols-2 gap-8">
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-3">✨ Le Mot Magique</h3>
+                        <p class="mb-4">Pour une tâche ardue, ajoutez **"think ultrahard"** à votre prompt. C'est une instruction qui lui demande d'allouer plus de ressources pour une réflexion plus profonde. Oui, c'est un mot de passe secret pour votre IA.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-3">✅ Le Plan de Test</h3>
+                        <p class="mb-4">Claude ne peut pas interagir avec votre app. Demandez-lui de rédiger un **plan de test** que vous pourrez suivre manuellement pour valider son travail. C'est une excellente façon de structurer la recette.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md md:col-span-2">
+                        <h3 class="font-bold text-xl mb-3">🧐 La Validation Croisée et Humaine</h3>
+                        <ul class="list-decimal list-inside space-y-3">
+                            <li><strong>Demandez une relecture à une autre IA :</strong> Ouvrez une nouvelle instance de Claude et demandez-lui de critiquer le code. Une IA est souvent plus critique envers une autre.</li>
+                            <li><strong>Challengez la simplicité :</strong> Demandez-lui 2 à 3 fois : "Peux-tu vérifier que c'est aussi simple que possible ?".</li>
+                            <li class="font-bold text-teal-700"><strong>Lisez le code vous-même :</strong> C'est l'étape la plus cruciale. Soyez méfiant. Claude adore les raccourcis (ex: `ref` en React, `any` en TypeScript). C'est à vous d'être le garant de la qualité finale.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Les Limites -->
+            <section id="limites" class="content-section">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-teal-600">Connaître les Limites</h2>
+                    <p class="text-stone-600">Claude est un outil puissant, mais pas universel. Savoir quand ne pas l'utiliser est aussi important que de savoir comment l'utiliser. Cette section définit les frontières de son domaine de pertinence pour éviter les mauvaises surprises et les contraintes techniques futures.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-3">🎨 Interface Utilisateur (UI)</h3>
+                        <p class="mb-4">Évitez d'utiliser Claude pour le design d'UI. Les LLM ont un "style" reconnaissable, souvent peu esthétique et générique. Pour cela, le talent d'un designer humain reste inégalé.</p>
+                        <h3 class="font-bold text-xl mb-3">🏛️ Code d'Architecture Critique</h3>
+                        <p>Ne lui confiez pas l'écriture de code fondamental sur lequel reposera une grande partie de votre application. Chaque petite décision de conception à ce niveau peut devenir une contrainte massive plus tard. Utilisez-le pour brainstormer des implémentations, mais gardez la main sur les décisions stratégiques.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-3 text-center">Forces vs Faiblesses</h3>
+                        <div class="chart-container">
+                            <canvas id="claudeRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                 <div class="mt-12 bg-teal-50 border-l-4 border-teal-500 p-6 rounded-r-lg text-center max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-teal-800">Conclusion : Un Partenaire, Pas un Remplaçant</h3>
+                    <p class="mt-3 text-teal-900">La confiance envers Claude se construit avec l'expérience. Son véritable super-pouvoir est sa capacité à prendre en charge des unités de travail complètes et à initier des tâches complexes, ce qui est souvent le plus difficile. En le maîtrisant, vous ne remplacez pas le développeur, vous l'augmentez.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const workflowSteps = document.querySelectorAll('.flow-step');
+
+            function setActiveSection(targetId) {
+                const id = targetId.startsWith('#') ? targetId.substring(1) : targetId;
+                
+                navLinks.forEach(link => {
+                    link.classList.toggle('nav-active', link.getAttribute('href') === `#${id}`);
+                    link.classList.toggle('nav-inactive', link.getAttribute('href') !== `#${id}`);
+                });
+
+                contentSections.forEach(section => {
+                    section.classList.toggle('active', section.id === id);
+                });
+
+                workflowSteps.forEach(step => {
+                    step.classList.toggle('active', step.dataset.target === id);
+                });
+                
+                window.location.hash = id;
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.currentTarget.geatAttribute('href');
+                    setActiveSection(targetId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            workflowSteps.forEach(step => {
+                step.addEventListener('click', (e) => {
+                    const targetId = e.currentTarget.dataset.target;
+                    setActiveSection(targetId);
+                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+            
+            const initialSection = window.location.hash || '#introduction';
+            setActiveSection(initialSection);
+
+            // Chart.js Radar Chart
+            const ctx = document.getElementById('claudeRadarChart');
+            if(ctx) {
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: [
+                            'Code simple (boilerplate)', 
+                            'Algorithmes complexes', 
+                            'Débogage (avec guide)', 
+                            'Design UI/UX', 
+                            'Architecture critique', 
+                            'Tests unitaires'
+                        ],
+                        datasets: [{
+                            label: 'Efficacité de Claude',
+                            data: [9, 5, 7, 3, 4, 8],
+                            fill: true,
+                            backgroundColor: 'rgba(20, 184, 166, 0.2)',
+                            borderColor: 'rgb(13, 148, 136)',
+                            pointBackgroundColor: 'rgb(13, 148, 136)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(13, 148, 136)'
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        elements: {
+                            line: {
+                                borderWidth: 3
+                            }
+                        },
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    color: '#333'
+                                },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    stepSize: 2
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 10
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#333',
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
