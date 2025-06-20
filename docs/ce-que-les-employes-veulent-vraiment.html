@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : L'Avenir du Travail avec l'IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .skills-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .skill-item {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12 md:mb-20">
+            <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-4">IA au Travail : Ce que les Employés Veulent Vraiment</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Une synthèse visuelle de l'étude de l'Université de Stanford sur l'alignement entre les désirs des travailleurs et les capacités de l'IA.</p>
+        </header>
+
+        <section id="enjeu" class="mb-16 md:mb-24">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-10 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">L'Enjeu : Un Manque de Compréhension</h2>
+                <p class="text-gray-700 mb-8 max-w-2xl mx-auto">Nous ne savons pas vraiment comment les employés souhaitent intégrer l'IA dans leurs tâches quotidiennes. Une étude a donc directement posé la question pour éclaircir ce point crucial.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
+                    <div class="text-center">
+                        <div class="text-6xl font-extrabold text-blue-600">1,500</div>
+                        <div class="text-gray-600 mt-2">Travailleurs interrogés</div>
+                    </div>
+                    <div class="text-4xl text-gray-300 font-light">+</div>
+                    <div class="text-center">
+                        <div class="text-6xl font-extrabold text-teal-600">52</div>
+                        <div class="text-gray-600 mt-2">Experts en IA consultés</div>
+                    </div>
+                </div>
+                 <div class="mt-8 text-5xl">� ❓ 🤖</div>
+            </div>
+        </section>
+
+        <section id="has" class="mb-16 md:mb-24">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900">L'Échelle de l'Agence Humaine (HAS)</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mt-2">Au-delà du "tout ou rien", il existe un spectre de collaboration entre l'humain et l'IA.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div class="bg-white rounded-lg shadow-md p-4 text-center border-b-4 border-purple-500">
+                    <div class="text-3xl mb-2">🤖</div>
+                    <h3 class="font-bold">H1: Autonomie Totale</h3>
+                    <p class="text-sm text-gray-600">Le robot gère tout, seul.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 text-center border-b-4 border-purple-400">
+                    <div class="text-3xl mb-2">🤖<span class="text-lg">👤</span></div>
+                    <h3 class="font-bold">H2: Supervision Minimale</h3>
+                    <p class="text-sm text-gray-600">Le robot a besoin d'un peu d'aide.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 text-center border-b-4 border-purple-300">
+                    <div class="text-3xl mb-2">🤖🤝👤</div>
+                    <h3 class="font-bold">H3: Partenariat Égal</h3>
+                    <p class="text-sm text-gray-600">Humain et robot collaborent.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 text-center border-b-4 border-purple-200">
+                    <div class="text-3xl mb-2"><span class="text-lg">🤖</span>👤</div>
+                    <h3 class="font-bold">H4: Assistance de l'IA</h3>
+                    <p class="text-sm text-gray-600">L'humain dirige, le robot assiste.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 text-center border-b-4 border-purple-100">
+                    <div class="text-3xl mb-2">👤</div>
+                    <h3 class="font-bold">H5: Contrôle Humain</h3>
+                    <p class="text-sm text-gray-600">L'humain fait tout, sans IA.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="zones" class="mb-16 md:mb-24">
+             <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900">Les 4 Zones de l'Automatisation</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mt-2">Ce que les employés désirent ne correspond pas toujours à ce que la technologie peut faire, créant quatre scénarios distincts.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="chart-container h-[400px] md:h-[500px]">
+                    <canvas id="desireCapabilityChart"></canvas>
+                </div>
+                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 text-xs text-center">
+                    <div><span class="font-bold text-yellow-600">Opportunité R&D</span><br>Forte demande, faible capacité.</div>
+                    <div><span class="font-bold text-green-600">Feu Vert</span><br>Forte demande, forte capacité.</div>
+                    <div><span class="font-bold text-gray-600">Basse Priorité</span><br>Faible demande, faible capacité.</div>
+                    <div><span class="font-bold text-red-600">Feu Rouge</span><br>Faible demande, forte capacité.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="decalage" class="mb-16 md:mb-24">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900">Le Grand Décalage : Investissements vs. Opportunités</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mt-2">Les investissements actuels (via les startups de Y Combinator) ne se concentrent pas toujours sur les zones les plus désirées par les travailleurs.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-10 flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/2 chart-container h-64 md:h-80">
+                     <canvas id="investmentDonutChart"></canvas>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <p class="text-2xl font-bold text-red-600 mb-4">41% des investissements sont mal alignés</p>
+                    <p class="text-gray-700">Une part significative des capitaux est dirigée vers des tâches que les employés ne souhaitent pas automatiser ("Feu Rouge") ou qui ont une faible priorité pour eux et pour la technologie actuelle ("Basse Priorité").</p>
+                    <div class="mt-6">
+                        <div class="flex items-center mb-2">
+                            <div class="w-4 h-4 rounded-full bg-red-500 mr-3"></div>
+                            <span>Zones "Feu Rouge" & "Basse Priorité" (41%)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 rounded-full bg-blue-500 mr-3"></div>
+                            <span>Zones "Feu Vert" & "Opportunité R&D" (59%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="competences" class="mb-12 md:mb-20">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900">Les Compétences de Demain</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mt-2">L'intégration de l'IA pourrait redéfinir la valeur de nos compétences, privilégiant les qualités interpersonnelles et organisationnelles.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 relative">
+                <div class="grid grid-cols-2 gap-4 md:gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold text-center mb-4">Valorisation Actuelle (Salaire)</h3>
+                        <ul id="skills-current" class="space-y-2"></ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-center mb-4">Valorisation Future (Agence Humaine)</h3>
+                        <ul id="skills-future" class="space-y-2"></ul>
+                    </div>
+                </div>
+                <canvas id="skills-canvas" class="skills-canvas"></canvas>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 text-sm mt-12">
+            <p>Source : "Future of Work with AI Agents" (Shao et al., 2025), Stanford University.</p>
+            <p>Infographie créée par [Votre Nom/Logo]</p>
+        </footer>
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (let word of words) {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+        
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const generateScatterData = () => {
+            const data = [];
+            const labels = [];
+            const pointColors = [];
+            
+            const taskExamples = {
+                green: { label: "Planifier des rendez-vous", x: 4.5, y: 4.8 },
+                red: { label: "Tracer des bagages perdus", x: 4.2, y: 1.8 },
+                yellow: { label: "Créer des prototypes de jeux vidéo", x: 2.5, y: 4.2 },
+                gray: { label: "Rechercher des produits logiciels", x: 2.2, y: 2.5 }
+            };
+
+            for(let i = 0; i < 80; i++) {
+                const x = Math.random() * 4 + 1;
+                const y = Math.random() * 4 + 1;
+                data.push({ x, y });
+                labels.push(`Tâche générique ${i+1}`);
+                if (x > 3 && y > 3) pointColors.push('rgba(16, 185, 129, 0.7)');
+                else if (x > 3 && y < 3) pointColors.push('rgba(239, 68, 68, 0.7)');
+                else if (x < 3 && y > 3) pointColors.push('rgba(245, 158, 11, 0.7)');
+                else pointColors.push('rgba(107, 114, 128, 0.7)');
+            }
+
+            Object.values(taskExamples).forEach(task => {
+                data.push({ x: task.x, y: task.y });
+                labels.push(task.label);
+                 if (task.x > 3 && task.y > 3) pointColors.push('rgba(16, 185, 129, 1)');
+                else if (task.x > 3 && task.y < 3) pointColors.push('rgba(239, 68, 68, 1)');
+                else if (task.x < 3 && task.y > 3) pointColors.push('rgba(245, 158, 11, 1)');
+                else pointColors.push('rgba(107, 114, 128, 1)');
+            });
+            
+            return { data, labels, pointColors, taskExamples };
+        };
+
+        const scatterData = generateScatterData();
+        const ctxScatter = document.getElementById('desireCapabilityChart').getContext('2d');
+        new Chart(ctxScatter, {
+            type: 'scatter',
+            data: {
+                labels: scatterData.labels,
+                datasets: [{
+                    label: 'Tâches',
+                    data: scatterData.data,
+                    backgroundColor: scatterData.pointColors,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        title: {
+                            display: true,
+                            text: 'Capacité de l\'IA (Évaluée par les experts)',
+                            font: { size: 14 }
+                        },
+                        min: 1,
+                        max: 5,
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Désir des Employés',
+                            font: { size: 14 }
+                        },
+                        min: 1,
+                        max: 5
+                    }
+                },
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    annotation: {
+                        annotations: {
+                            line1: { type: 'line', xMin: 3, xMax: 3, borderColor: 'rgb(200, 200, 200)', borderWidth: 1, borderDash: [6, 6] },
+                            line2: { type: 'line', yMin: 3, yMax: 3, borderColor: 'rgb(200, 200, 200)', borderWidth: 1, borderDash: [6, 6] },
+                            ...Object.fromEntries(Object.entries(scatterData.taskExamples).map(([key, task], index) => ([
+                                `label${index}`, {
+                                    type: 'label',
+                                    xValue: task.x,
+                                    yValue: task.y,
+                                    content: task.label,
+                                    font: { size: 12, weight: 'bold' },
+                                    color: '#333',
+                                    yAdjust: -15,
+                                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                                    borderRadius: 4,
+                                    padding: 4,
+                                }
+                            ])))
+                        }
+                    }
+                }
+            }
+        });
+        
+        const ctxDonut = document.getElementById('investmentDonutChart').getContext('2d');
+        new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Mal alignés (Feu Rouge & Basse Priorité)', 'Bien alignés (Feu Vert & R&D)'],
+                datasets: [{
+                    data: [41, 59],
+                    backgroundColor: ['#ef4444', '#3b82f6'],
+                    borderColor: '#fff',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const skillsData = [
+            { id: 'analyzing', name: 'Analyser des données', currentRank: 1, futureRank: 8 },
+            { id: 'organizing', name: 'Organiser et Planifier', currentRank: 5, futureRank: 1 },
+            { id: 'training', name: 'Former les autres', currentRank: 9, futureRank: 2 },
+            { id: 'staffing', name: 'Gérer le personnel', currentRank: 3, futureRank: 3 },
+            { id: 'knowledge', name: 'Utiliser les connaissances', currentRank: 2, futureRank: 4 },
+            { id: 'communicating', name: 'Communiquer (interne)', currentRank: 6, futureRank: 5 },
+            { id: 'decisions', name: 'Prendre des décisions', currentRank: 4, futureRank: 6 },
+            { id: 'monitoring', name: 'Suivre les processus', currentRank: 7, futureRank: 7 },
+            { id: 'documenting', name: 'Documenter/Enregistrer', currentRank: 8, futureRank: 9 },
+            { id: 'relationships', name: 'Établir des relations', currentRank: 10, futureRank: 10 },
+        ];
+
+        const currentSkillsList = document.getElementById('skills-current');
+        const futureSkillsList = document.getElementById('skills-future');
+        
+        const sortedByCurrent = [...skillsData].sort((a, b) => a.currentRank - b.currentRank);
+        const sortedByFuture = [...skillsData].sort((a, b) => a.futureRank - b.futureRank);
+
+        sortedByCurrent.forEach(skill => {
+            const li = document.createElement('li');
+            li.id = `skill-current-${skill.id}`;
+            li.className = 'skill-item bg-gray-100 p-2 rounded-md text-sm text-center';
+            const change = skill.futureRank - skill.currentRank;
+            let arrow = '';
+            if (change < 0) arrow = `<span class="text-green-500">▲</span>`;
+            else if (change > 0) arrow = `<span class="text-red-500">▼</span>`;
+            
+            li.innerHTML = `<span class="font-bold">${skill.currentRank}.</span> ${skill.name} ${arrow}`;
+            currentSkillsList.appendChild(li);
+        });
+
+        sortedByFuture.forEach(skill => {
+            const li = document.createElement('li');
+            li.id = `skill-future-${skill.id}`;
+            li.className = 'skill-item bg-gray-100 p-2 rounded-md text-sm text-center';
+            li.innerHTML = `<span class="font-bold">${skill.futureRank}.</span> ${skill.name}`;
+            futureSkillsList.appendChild(li);
+        });
+        
+        const drawSkillLines = () => {
+            const canvas = document.getElementById('skills-canvas');
+            const ctx = canvas.getContext('2d');
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            skillsData.forEach(skill => {
+                const startEl = document.getElementById(`skill-current-${skill.id}`);
+                const endEl = document.getElementById(`skill-future-${skill.id}`);
+
+                if (startEl && endEl) {
+                    const startRect = startEl.getBoundingClientRect();
+                    const endRect = endEl.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+
+                    const startX = startRect.right - containerRect.left;
+                    const startY = startRect.top + startRect.height / 2 - containerRect.top;
+                    const endX = endRect.left - containerRect.left;
+                    const endY = endRect.top + endRect.height / 2 - containerRect.top;
+                    
+                    const change = skill.futureRank - skill.currentRank;
+                    let color = 'rgba(156, 163, 175, 0.6)';
+                    if (change < 0) color = 'rgba(16, 185, 129, 0.6)';
+                    else if (change > 0) color = 'rgba(239, 68, 68, 0.6)';
+
+                    ctx.beginPath();
+                    ctx.moveTo(startX, startY);
+                    ctx.bezierCurveTo(startX + 50, startY, endX - 50, endY, endX, endY);
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+            });
+        };
+        
+        window.addEventListener('load', drawSkillLines);
+        window.addEventListener('resize', drawSkillLines);
+
+    </script>
+</body>
+</html>
+�
