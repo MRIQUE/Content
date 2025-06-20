@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : La Recette pour Rater sa Transformation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    PLAN DE L'INFOGRAPHIE
+    Narrative: Guide satirique en 3 étapes pour faire échouer une transformation numérique, destiné au COMEX.
+    Structure:
+    1.  Titre Accrocheur & Introduction.
+    2.  Étape 1: "Noyer la DSI". Expliquer le concept. Visualiser la surcharge de petites tâches (Stacked Bar Chart) et le faux indicateur de succès (NPS en Donut Chart).
+    3.  Étape 2: "Le Mirage de l'Innovation". Expliquer le concept. Montrer l'explosion de la "PR Value" (Line Chart) au détriment de la valeur métier.
+    4.  Étape 3: "La Grande Évasion". Expliquer le concept. Visualiser la répartition du budget (Pie Chart) et le processus de délégation défaillant (Flowchart en HTML/CSS).
+    5.  Conclusion: "Résultat Garanti". Résumer l'échec et le bouc émissaire.
+
+    SÉLECTION DES VISUALISATIONS
+    -   Répartition du temps DSI: Goal=Compare, Choice=Stacked Bar Chart (Chart.js), Justification=Montre la composition de la charge de travail (stratégique vs. mineur). Pas de SVG.
+    -   NPS de la DSI: Goal=Inform, Choice=Donut Chart (Chart.js), Justification=Montre une proportion simple de manière percutante et ironique. Pas de SVG.
+    -   Croissance de la PR Value: Goal=Change, Choice=Line Chart (Chart.js), Justification=Idéal pour montrer une tendance (ici, la montée des "vanity metrics") dans le temps. Pas de SVG.
+    -   Répartition budgétaire: Goal=Compare, Choice=Pie Chart (Chart.js), Justification=Visualise clairement la part disproportionnée du budget allouée à l'externe. Pas de SVG.
+    -   Processus d'échec: Goal=Organize, Choice=Flow Chart (HTML/Tailwind), Justification=Structure visuellement un processus simple sans utiliser de SVG ou Mermaid JS. Pas de SVG.
+
+    PALETTE DE COULEURS
+    Choix de la palette: "Energetic & Playful"
+    HEX Codes: #FF6B6B (Rouge), #FFD166 (Jaune), #06D6A0 (Vert), #118AB2 (Bleu), #073B4C (Bleu foncé/Texte)
+    
+    CONFIRMATION
+    Absolument aucun SVG ni Mermaid JS n'a été utilisé dans la génération de ce fichier. Tous les graphiques sont rendus via la librairie Chart.js (en Canvas) et les diagrammes de flux sont construits en pur HTML et Tailwind CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #073B4C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-[#073B4C] mb-4">La Recette Infame pour Rater sa Transformation</h1>
+            <p class="text-lg md:text-xl text-[#118AB2] max-w-3xl mx-auto">Un guide pratique (et ironique) à destination des membres du COMEX pour garantir l'échec de tout plan de transformation numérique.</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <!-- Étape 1 -->
+            <section class="p-6 md:p-8 bg-white rounded-2xl shadow-lg">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#073B4C]"><span class="text-[#FF6B6B]">Étape 1 :</span> Noyer la DSI sous le sable</h2>
+                    <p class="mt-2 text-md text-[#118AB2] max-w-2xl mx-auto">La stratégie consiste à saturer la Direction des Systèmes d'Information avec une avalanche de micro-demandes "urgentes" pour l'empêcher de se concentrer sur les projets structurants.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1">
+                        <h3 class="font-bold text-xl text-center mb-4 text-[#073B4C]">Analyse de la charge de travail de la DSI</h3>
+                        <p class="text-sm text-center mb-4 text-gray-600">Ce graphique illustre comment le "sable" (petites demandes, bugs mineurs) étouffe les "cailloux" (projets stratégiques). Le temps alloué aux vrais sujets de transformation fond comme neige au soleil.</p>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="taskChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h3 class="font-bold text-xl text-center mb-4 text-[#073B4C]">Le Faux Indicateur de Succès</h3>
+                        <p class="text-sm text-center mb-4 text-gray-600">En répondant à toutes les sollicitations mineures, le NPS de la DSI explose. Un chiffre magnifique qui donne le sourire, mais qui masque une totale absence de création de valeur à long terme.</p>
+                        <div class="chart-container h-64 md:h-80">
+                             <canvas id="npsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Étape 2 -->
+            <section class="p-6 md:p-8 bg-white rounded-2xl shadow-lg">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#073B4C]"><span class="text-[#FFD166]">Étape 2 :</span> Le Mirage de l'Innovation</h2>
+                    <p class="mt-2 text-md text-[#118AB2] max-w-2xl mx-auto">Lancez une multitude de projets "à la mode", choisis pour leur potentiel de communication plutôt que pour leur pertinence stratégique. L'image avant tout !</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                     <div>
+                        <h3 class="font-bold text-xl text-center mb-4 text-[#073B4C]">L'explosion de la "PR Value"</h3>
+                        <p class="text-sm text-center mb-4 text-gray-600">Chaque projet "innovant" génère des articles et des posts LinkedIn. La visibilité de l'entreprise monte en flèche. Ce succès médiatique devient la seule mesure de la réussite, occultant le manque d'impact réel sur le business.</p>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="prChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-center mb-4 text-[#073B4C]">La tactique du "Projet LinkedIn"</h3>
+                         <ul class="space-y-4 text-left">
+                            <li class="flex items-start">
+                                <span class="text-2xl mr-4 text-[#FFD166]">🚀</span>
+                                <div>
+                                    <h4 class="font-bold text-[#073B4C]">Choisir par le buzz</h4>
+                                    <p class="text-gray-600">Privilégier les technologies tendances (IA, Métavers...) sans analyse de besoin.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-2xl mr-4 text-[#FFD166]">🤫</span>
+                                <div>
+                                    <h4 class="font-bold text-[#073B4C]">Dénigrer les processus</h4>
+                                    <p class="text-gray-600">Qualifier de "boomer" quiconque demande une fiche de cadrage ou un ROI.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-2xl mr-4 text-[#FFD166]"> pressurisé</span>
+                                <div>
+                                    <h4 class="font-bold text-[#073B4C]">Mettre la pression</h4>
+                                    <p class="text-gray-600">Impliquer les top executives pour court-circuiter les gardes-fous (cybersécurité, architecture).</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Étape 3 -->
+            <section class="p-6 md:p-8 bg-white rounded-2xl shadow-lg">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#073B4C]"><span class="text-[#06D6A0]">Étape 3 :</span> La Grande Évasion Stratégique</h2>
+                    <p class="mt-2 text-md text-[#118AB2] max-w-2xl mx-auto">Pour les sujets complexes et stratégiques, surtout ne pas monter en compétence en interne. La solution : tout externaliser !</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="font-bold text-xl text-center mb-4 text-[#073B4C]">Répartition du Budget de Transformation</h3>
+                        <p class="text-sm text-center mb-4 text-gray-600">Ce diagramme montre une saine gestion : la quasi-totalité du budget est confiée à des consultants externes. L'interne ? Il se contentera de gérer le changement avec des slides, une compétence bien moins coûteuse.</p>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="budgetChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-center mb-4 text-[#073B4C]">Le Processus de Délégation Éprouvé</h3>
+                        <p class="text-sm text-center mb-4 text-gray-600">Un flux de travail limpide qui assure que la responsabilité est diluée et que les compétences stratégiques quittent l'entreprise pour de bon.</p>
+                        <div class="space-y-4 flow-chart">
+                            <div class="p-4 bg-slate-100 rounded-lg text-center shadow">
+                                <p class="font-bold">COMEX</p>
+                                <p class="text-sm">Décide d'un projet stratégique (ex: Refonte ERP, Data)</p>
+                            </div>
+                            <div class="text-center text-2xl font-black text-[#06D6A0]">↓</div>
+                             <div class="p-4 bg-slate-100 rounded-lg text-center shadow">
+                                <p class="font-bold">"Transformation Manager" (Newbie)</p>
+                                <p class="text-sm">Incarne le projet, fait les slides, gère le buffet du séminaire.</p>
+                            </div>
+                            <div class="text-center text-2xl font-black text-[#06D6A0]">↓</div>
+                             <div class="p-4 bg-slate-100 rounded-lg text-center shadow">
+                                <p class="font-bold">Consultants Externes / ESN</p>
+                                <p class="text-sm">Réalisent 100% des assets stratégiques.</p>
+                            </div>
+                             <div class="text-center text-2xl font-black text-[#06D6A0]">↓</div>
+                             <div class="p-4 bg-red-100 border-2 border-red-400 rounded-lg text-center shadow">
+                                <p class="font-bold text-red-800">Équipes IT Internes</p>
+                                <p class="text-sm text-red-700">Peu motivées, sans vision, subissent le "change management".</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Conclusion -->
+            <section class="text-center p-8 bg-gradient-to-r from-[#073B4C] to-[#118AB2] rounded-2xl shadow-2xl">
+                <h2 class="text-4xl font-black text-white mb-4">🔁 Le Résultat Garanti</h2>
+                <p class="text-lg text-slate-200 mb-6">En suivant scrupuleusement ces recommandations, vous atteindrez l'objectif final :</p>
+                <div class="max-w-md mx-auto bg-white/20 backdrop-blur-sm p-6 rounded-lg">
+                    <p class="text-2xl md:text-3xl font-bold text-white">
+                        L'échec total du plan de transformation, suivi de la décision de vous <span class="text-[#FF6B6B]">séparer de votre DSI</span>.
+                    </p>
+                    <p class="text-md text-slate-300 mt-4">
+                        Évidemment, c'est de sa faute. Votre Transformation Manager vous l'a confirmé.
+                    </p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16">
+            <p class="text-sm text-gray-500">Une infographie inspirée par les dures réalités du terrain.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const CHART_COLORS = {
+                red: '#FF6B6B',
+                yellow: '#FFD166',
+                green: '#06D6A0',
+                blue: '#118AB2',
+                darkBlue: '#073B4C',
+                lightGray: '#F1F5F9'
+            };
+
+            function wrapLabels(label, maxLength) {
+                if (typeof label !== 'string' || label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            }
+            
+            const defaultTooltipCallback = {
+                plugins: {
+                    legend: {
+                         position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            new Chart(document.getElementById('taskChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Trimestre 1', 'Trimestre 2', 'Trimestre 3', 'Trimestre 4'],
+                    datasets: [{
+                        label: 'Projets Stratégiques (Cailloux)',
+                        data: [60, 40, 25, 10],
+                        backgroundColor: CHART_COLORS.blue,
+                    }, {
+                        label: 'Petites demandes (Sable)',
+                        data: [40, 60, 75, 90],
+                        backgroundColor: CHART_COLORS.yellow,
+                    }]
+                },
+                options: {
+                    ...defaultTooltipCallback,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                callback: function(value) { return value + "%" }
+                            },
+                            title: {
+                                display: true,
+                                text: '% du temps de la DSI'
+                            }
+                        }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('npsChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['NPS (Équipes satisfaites)', '...'],
+                    datasets: [{
+                        data: [92, 8],
+                        backgroundColor: [CHART_COLORS.green, CHART_COLORS.lightGray],
+                        borderColor: ['#FFFFFF'],
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    ...defaultTooltipCallback,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        ...defaultTooltipCallback.plugins,
+                        title: {
+                            display: false
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            new Chart(document.getElementById('prChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
+                    datasets: [{
+                        label: 'Mentions Presse & LinkedIn',
+                        data: [12, 19, 33, 58, 89, 152],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                        borderColor: CHART_COLORS.red,
+                        tension: 0.4,
+                        pointBackgroundColor: CHART_COLORS.red,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    ...defaultTooltipCallback,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Nombre de mentions'
+                            }
+                        }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('budgetChart'), {
+                type: 'pie',
+                data: {
+                    labels: [
+                        wrapLabels('Consultants Externes & ESN', 16),
+                        wrapLabels('Développement Compétences Internes', 16), 
+                        wrapLabels('Accompagnement au changement (slides)', 16)
+                    ],
+                    datasets: [{
+                        label: 'Budget de transformation',
+                        data: [80, 15, 5],
+                        backgroundColor: [
+                            CHART_COLORS.blue,
+                            CHART_COLORS.red,
+                            CHART_COLORS.yellow
+                        ],
+                         borderColor: ['#FFFFFF'],
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    ...defaultTooltipCallback,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
