@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographie : Projet Huttopia à Lépin-Le-Lac</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-item {
+            border: 2px solid;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .flowchart-arrow {
+            position: relative;
+            height: 2rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow::after {
+            content: '▼';
+            font-size: 1.5rem;
+            color: #6A4A3C;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #CC333F;
+            border: 3px solid #f0f4f8;
+        }
+    </style>
+</head>
+<body class="text-[#6A4A3C]">
+
+    <!-- Palette Name: Energetic & Playful -->
+    <!-- Narrative Plan: 
+        1. Header & Hook: Introduce the project and its core tension.
+        2. Timeline: Show the long history leading to the current decision.
+        3. Stakeholders: Compare the influence of different actors involved.
+        4. Risk Analysis: Visualize the key risks identified in the report.
+        5. Decision Flow: Detail the administrative process undertaken by the municipality.
+        6. Conclusion: Summarize the key takeaways.
+    -->
+    <!-- Visualization Plan:
+        - Timeline (Change): Custom HTML/CSS to show event sequence. No SVG.
+        - Stakeholder Influence (Compare): Chart.js Horizontal Bar Chart to rank actors by influence. No SVG.
+        - Risk Matrix (Organize): Custom HTML/CSS Grid to categorize risks. No SVG.
+        - Decision Flowchart (Organize): Custom HTML/CSS Flexbox structure to map the process. No SVG, No Mermaid JS.
+    -->
+    <!-- Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. -->
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#00A0B0] mb-4">Projet Huttopia à Lépin-le-Lac</h1>
+            <p class="text-lg md:text-xl text-[#6A4A3C] max-w-3xl mx-auto">Analyse d'un dossier complexe entre développement économique, patrimoine citoyen et protection environnementale sur les rives d'un lac protégé.</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <!-- Section 1: Contexte & Chronologie -->
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#CC333F] mb-2">Une Décision Rapide, Une Histoire Longue</h2>
+                <p class="mb-8 text-base">La décision de la municipalité de confier le site de la "Maison Ronde" à Huttopia en moins d'un an contraste avec plus d'une décennie d'engagement citoyen pour la sauvegarde de ce lieu emblématique. Cette chronologie met en lumière les moments clés qui ont façonné le destin du site.</p>
+                
+                <div class="relative pl-8 border-l-2 border-dashed border-[#EB6841]">
+                    <div class="timeline-item relative mb-8 pl-4">
+                        <h3 class="font-bold text-lg text-[#00A0B0]">1er Mars 2010</h3>
+                        <p class="text-sm">Création de l'association "Les Amis de la Maison Ronde" avec pour objectif un projet éco-touristique de réhabilitation porté par les citoyens.</p>
+                    </div>
+                    <div class="timeline-item relative mb-8 pl-4">
+                        <h3 class="font-bold text-lg text-[#00A0B0]">5 Décembre 2023</h3>
+                        <p class="text-sm">Le conseil municipal de Lépin-le-Lac approuve la candidature du groupe Huttopia pour la requalification du site, avant même la modification de son statut juridique.</p>
+                    </div>
+                    <div class="timeline-item relative mb-8 pl-4">
+                        <h3 class="font-bold text-lg text-[#00A0B0]">5 Septembre 2024</h3>
+                        <p class="text-sm">En une seule séance, le conseil municipal constate la désaffectation du site, le déclasse du domaine public vers le domaine privé, et approuve le projet de bail emphytéotique avec Huttopia.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Acteurs en Présence -->
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#CC333F] mb-2">Cartographie des Parties Prenantes</h2>
+                <p class="mb-8 text-base">Le projet cristallise les intérêts de multiples acteurs, des promoteurs institutionnels aux gardiens de l'environnement. Leur niveau d'influence respectif sera déterminant pour l'avenir du site. Un niveau d'influence élevé indique une forte capacité à orienter ou bloquer le projet.</p>
+                <div class="chart-container">
+                    <canvas id="stakeholdersChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Section 3: Analyse des Risques -->
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#CC333F] mb-2">Analyse des Risques et Points de Vigilance</h2>
+                <p class="mb-8 text-base">Quatre zones de risque majeures se dessinent, chacune pouvant potentiellement retarder, modifier en profondeur, voire compromettre la réalisation du projet tel qu'envisagé initialement.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-[#EB6841]/20 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-[#EB6841] mb-2">⚖️ Risque Juridique & Procédural</h3>
+                        <p>La légalité de la séquence des décisions municipales (choix de l'opérateur avant le déclassement du bien) pourrait être contestée, ouvrant la voie à des recours juridiques.</p>
+                    </div>
+                    <div class="bg-[#00A0B0]/20 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-[#00A0B0] mb-2">🌿 Risque Environnemental</h3>
+                        <p>Dans une Réserve Naturelle Régionale, une étude d'impact jugée insuffisante ou des impacts sous-évalués pourraient entraîner un blocage des autorisations d'urbanisme.</p>
+                    </div>
+                    <div class="bg-[#EDC951]/20 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-[#EDC951] mb-2">👥 Risque Social & Réputationnel</h3>
+                        <p>La mobilisation du puissant tissu associatif local pourrait nuire à l'image "verte" d'Huttopia et créer un climat de conflit durable, comme observé sur d'autres projets du groupe.</p>
+                    </div>
+                    <div class="bg-[#CC333F]/20 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-[#CC333F] mb-2">📉 Risque Opérationnel & Stratégique</h3>
+                        <p>Une surexploitation touristique pourrait dégrader l'attrait écologique et paysager du lac, menaçant à terme la rentabilité même du projet qui en dépend.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 4: Processus Décisionnel -->
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#CC333F] mb-2">Le Processus Décisionnel de la Municipalité</h2>
+                <p class="mb-8 text-base">La requalification du site a suivi un parcours administratif rapide et ciblé, où chaque étape a été conçue pour rendre possible la signature du bail avec l'opérateur présélectionné.</p>
+                <div class="flex flex-col items-center">
+                    <div class="flowchart-item border-[#00A0B0] text-[#00A0B0] bg-[#00A0B0]/10 w-full max-w-md">
+                        <span class="font-bold text-lg">Étape 1</span>
+                        <p>Approbation de la candidature Huttopia (Déc. 2023)</p>
+                    </div>
+                    <div class="flowchart-arrow"></div>
+                    <div class="flowchart-item border-[#EB6841] text-[#EB6841] bg-[#EB6841]/10 w-full max-w-md">
+                        <span class="font-bold text-lg">Étape 2</span>
+                        <p>Constat de "désaffectation" du site du domaine public</p>
+                    </div>
+                    <div class="flowchart-arrow"></div>
+                    <div class="flowchart-item border-[#EDC951] text-[#EDC951] bg-[#EDC951]/10 w-full max-w-md">
+                        <span class="font-bold text-lg">Étape 3</span>
+                        <p>Déclassement du site vers le domaine privé communal</p>
+                    </div>
+                    <div class="flowchart-arrow"></div>
+                    <div class="flowchart-item border-[#CC333F] text-[#CC333F] bg-[#CC333F]/10 w-full max-w-md">
+                        <span class="font-bold text-lg">Étape 4</span>
+                        <p>Approbation et autorisation de signature du bail emphytéotique (Sept. 2024)</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-[#6A4A3C]/20">
+            <p class="text-sm text-[#6A4A3C]">Cette infographie est une synthèse visuelle basée sur le rapport d'analyse du projet Huttopia à Lépin-le-Lac. Elle vise à éclairer le débat public en présentant les données clés de manière accessible.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine.length === 0 ? '' : ' ') + word;
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const stakeholdersData = {
+            labels: [
+                'Mairie de Lépin-le-Lac', 
+                'Groupe Huttopia', 
+                'CCLA', 
+                'Collectif SOS Lac & FAPLA', 
+                'Les Amis de la Maison Ronde'
+            ].map(wrapLabel),
+            datasets: [{
+                label: 'Niveau d\'Influence (Élevé = 5)',
+                data: [5, 5, 4, 4, 3],
+                backgroundColor: ['#CC333F', '#00A0B0', '#EB6841', '#EDC951', '#6A4A3C'],
+                borderColor: 'rgba(255, 255, 255, 0)',
+                borderWidth: 1
+            }]
+        };
+
+        const stakeholdersConfig = {
+            type: 'bar',
+            data: stakeholdersData,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 5,
+                        grid: {
+                            color: 'rgba(106, 74, 60, 0.1)'
+                        },
+                        ticks: {
+                            color: '#6A4A3C'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#6A4A3C',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Niveau d\'Influence des Acteurs',
+                        color: '#6A4A3C',
+                        font: {
+                           size: 16,
+                           weight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        };
+
+        const stakeholdersChart = new Chart(
+            document.getElementById('stakeholdersChart'),
+            stakeholdersConfig
+        );
+    </script>
+</body>
+</html>
